@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
 include_once "classes/class.Util.php";
 include_once "classes/File.php";
 include_once "classes/FormElement.php";
