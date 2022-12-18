@@ -1,0 +1,96 @@
+BODY{ 
+color:white;
+font-family:Verdana;
+font-size:9pt;
+padding-bottom:0;
+padding-left:0;
+scrollbar:none;
+background:indigo;
+width:99%;
+}
+
+div.main_box{
+margin-left:300px;
+margin-right:300px;
+margin-top:180px;
+vertical-align:middle;
+border:gray solid 10px;
+text-align:center;
+padding-left:5px;
+padding-right:5px;
+padding-bottom:5px;
+padding-top:5px;
+font-size:10pt;
+line-height:150%;
+}
+
+div.box1{
+width:100%;
+border:white dotted 0px;
+}
+
+div.username{
+float:left;
+text-align:right;
+width:30%;
+border:white dotted 0px;
+}
+
+div.userform{
+float:right;
+text-align:left;
+border:white dotted 0px;
+width:68%;
+}
+
+div.normalize{
+clear:both;
+width:100%;
+line-height:100%;
+}
+
+div.box2{
+clear:both;
+width:100%;
+border:white dotted 0px;
+}
+
+div.passwd{
+float:left;
+text-align:right;
+width:30%;
+border:white dotted 0px;
+}
+
+div.passwdform{
+float:right;
+text-align:left;
+border:white dotted 0px;
+width:68%;
+}
+
+div.box3{
+clear:both;
+width:100%;
+}
+
+div.imgsource{
+float:left;
+text-align:right;
+width:30%;
+border:white dotted 0px;
+}
+
+div.imgform{
+float:right;
+text-align:left;
+border:white dotted 0px;
+width:68%;
+}
+
+div.login{
+padding-top:10px;
+clear:both;
+text-align:right;
+border:white dotted 0px;
+}

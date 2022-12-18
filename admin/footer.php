@@ -1,0 +1,2 @@
+<DIV CLASS="footer">Original Design Created and Licensed by Amateurasu for Gendai Shikaku Bunka Kenkyuukai [&nbsp;&#29694;&#20195;&nbsp;&#35222;&#35226;&nbsp;&#25991;&#21270;&nbsp;&#30740;&#31350;&#20250;&nbsp;] ITB<br />Copyright &copy; 2006 | All Rights Reserved. | <a href="adminutama.php?m=credits">Credits</a></div>
+<SCRIPT language="javascript" src="javacripts/statusbar.js"></SCRIPT>

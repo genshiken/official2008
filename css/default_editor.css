@@ -1,0 +1,45 @@
+BODY{
+width:99%;
+}
+
+div.nav{
+width:100%;
+}
+
+div.select_language{
+width:354px;
+text-align:left;
+}
+
+div.box1{
+float:left;
+height:20px;
+width:100px;
+border:0px solid black;
+}
+
+div.box2{
+float:right;
+width:230px;
+border:0px solid black;
+height:20px;
+}
+
+div.select_skin{
+width:354px;
+text-align:left;
+}
+
+div.box3{
+float:left;
+width:100px;
+border:0px solid black;
+height:20px;
+}
+
+div.box4{
+float:right;
+width:230px;
+border:0px solid black;
+height:20px;
+}

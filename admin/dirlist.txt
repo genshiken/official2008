@@ -1,0 +1,4 @@
+$destDir2 = "image";
+$destDir3 = "photo_officials";
+$destDir4 = "gallery";
+$destDir5 = "image_trailer";
