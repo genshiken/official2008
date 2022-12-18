@@ -14,7 +14,7 @@ function JMusicReviews()
 	ost_jmusicreviews	TINYTEXT	NOT NULL,
 	isi_jmusicreviews	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   ?>
 	<div class="listsort">

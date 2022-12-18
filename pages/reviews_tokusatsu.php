@@ -26,7 +26,7 @@ function TokusatsuReviews()
 	image_tokusatsureviews	TEXT	NOT NULL,
 	isi_tokusatsureviews	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   ?>
 	<div class="listsort">

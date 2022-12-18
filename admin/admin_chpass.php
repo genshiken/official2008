@@ -20,7 +20,7 @@ function ChangePassword()
     waktu_chpass	DATETIME	NOT NULL,
 	isi_chpass		LONGTEXT	NOT NULL
   )";
-  $ExecuteCreateChPass = mysql_db_query($dbname,$CreateChPass);
+  $ExecuteCreateChPass = $adoObj->execute($CreateChPass);
 
   $sql = "select count(*) as total from chpass";
   	$total = $adoObj->GetOne($sql);

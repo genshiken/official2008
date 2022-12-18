@@ -21,7 +21,7 @@ function OfficialNews()
 	judul_official_news	TINYTEXT	CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
 	isi_official_news	LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   $sql = "select count(*) as total from official_news";
   $total = $adoObj->GetOne($sql);

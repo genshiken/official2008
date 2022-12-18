@@ -30,7 +30,7 @@ function officials()
 	image_officials	TEXT	NOT NULL,
 	isi_officials	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   $sql = "select count(*) as total from officials";
   $total = $adoObj->GetOne($sql);

@@ -17,7 +17,7 @@ function OfficialProfile()
     waktu_upload_official_profile	DATETIME	NOT NULL,
 	isi_official_profile	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   $sql = "SELECT * FROM official_profile";
   $recordSet = $adoObj->Execute($sql);

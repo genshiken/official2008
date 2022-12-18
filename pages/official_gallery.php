@@ -21,7 +21,7 @@ function OfficialGallery()
 	image_official_gallery	TEXT	NOT NULL,
 	isi_official_gallery	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   $sql = "select count(*) as total from official_gallery";
   $total = $adoObj->GetOne($sql);

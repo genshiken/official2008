@@ -17,7 +17,7 @@ function OfficialHistory()
     waktu_upload_official_history	DATETIME	NOT NULL,
 	isi_official_history	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   $sql = "SELECT * FROM official_history";
   $recordSet = $adoObj->Execute($sql);

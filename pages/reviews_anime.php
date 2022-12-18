@@ -26,7 +26,7 @@ function AnimeReviews()
 	image_animereviews	TEXT	NOT NULL,
 	isi_animereviews	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   ?>
 	<div class="listsort">
