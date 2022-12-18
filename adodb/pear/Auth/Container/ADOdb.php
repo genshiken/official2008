@@ -52,7 +52,7 @@ class Auth_Container_ADOdb extends Auth_Container
      */
     var $db = null;
     var $dsn = '';
-	
+
     /**
      * User that is currently selected from the DB.
      * @var string
@@ -72,7 +72,7 @@ class Auth_Container_ADOdb extends Auth_Container
     function Auth_Container_ADOdb($dsn)
     {
         $this->_setDefaults();
-		
+
         if (is_array($dsn)) {
             $this->_parseOptions($dsn);
 
@@ -104,7 +104,7 @@ class Auth_Container_ADOdb extends Auth_Container
 	   	    		return PEAR::raiseError($err);
 	    		}
         	}
-        	
+
         } else {
             return PEAR::raiseError('The given dsn was not valid in file ' . __FILE__ . ' at line ' . __LINE__,
                                     41,
@@ -113,7 +113,7 @@ class Auth_Container_ADOdb extends Auth_Container
                                     null
                                     );
         }
-        
+
         if(!$this->db) {
         	return PEAR::raiseError(ADODB_Pear_error());
         } else {
@@ -136,7 +136,7 @@ class Auth_Container_ADOdb extends Auth_Container
     function _prepare()
     {
     	if(!$this->db) {
-    		$res = $this->_connect($this->options['dsn']);  		
+    		$res = $this->_connect($this->options['dsn']);
     	}
         return true;
     }
@@ -242,11 +242,11 @@ class Auth_Container_ADOdb extends Auth_Container
         else{
             $sql_from = $this->options['usernamecol'] . ", ".$this->options['passwordcol'].$this->options['db_fields'];
         }
-        
+
         $query = "SELECT ".$sql_from.
                 " FROM ".$this->options['table'].
                 " WHERE ".$this->options['usernamecol']." = " . $this->db->Quote($username);
-        
+
         $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
         $rset = $this->db->Execute( $query );
         $res = $rset->fetchRow();

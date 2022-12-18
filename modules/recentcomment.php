@@ -1,4 +1,4 @@
-<?
+<?php
 if (strpos($_SERVER["SCRIPT_NAME"],basename(__FILE__)) !== false) {
 header("location: ../index.php");
 }
@@ -11,7 +11,7 @@ function truncate($text,$limit){
 	$count  = 0;
 	foreach($text as $word){
 	   $return  .= $word." ";
-	   
+
 	   if($count == $limit - 1)
 	     break;
 	   $count++;

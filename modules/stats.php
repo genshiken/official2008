@@ -1,158 +1,158 @@
 <br />
 <h1><img align="absmiddle" src="pics/tooltip.png">&nbsp;User's Statistics&nbsp;<img align="absmiddle" src="pics/tooltip.png"></h1><br />
 <div class="stats">
-	
-	<? //Untuk IP Address ?>
+
+	<?php //Untuk IP Address ?>
 	&raquo; IP Address :<br />
 	<?PHP
 	echo "&nbsp;&nbsp;"
 	?>
 	<img src="pics/ip_address.png" align="absmiddle">
-	<?
-	if ($_SERVER["HTTP_CLIENT_IP"]) 
+	<?php
+	if ($_SERVER["HTTP_CLIENT_IP"])
 		$ip = $_SERVER["HTTP_CLIENT_IP"];
-    else if($_SERVER["REMOTE_ADDR"]) 
+    else if($_SERVER["REMOTE_ADDR"])
        	$ip = $_SERVER["REMOTE_ADDR"];
-    else if($_SERVER["HTTP_X_FORWARDED_FOR"]) 
+    else if($_SERVER["HTTP_X_FORWARDED_FOR"])
        	$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
     else
         $ip = 'Unknown';
-		
-	/*if (getenv("HTTP_CLIENT_IP")) 
+
+	/*if (getenv("HTTP_CLIENT_IP"))
 		$ip = getenv("HTTP_CLIENT_IP");
-    else if(getenv("REMOTE_ADDR")) 
+    else if(getenv("REMOTE_ADDR"))
        	$ip = getenv("REMOTE_ADDR");
-    else if(getenv("HTTP_X_FORWARDED_FOR")) 
+    else if(getenv("HTTP_X_FORWARDED_FOR"))
        	$ip = getenv("HTTP_X_FORWARDED_FOR");
     else
         $ip = 'Unknown';*/
-		
+
 	echo "$ip";
 	?><br /><br />
 	<!--
-	<? //Untuk Proxy ?>
+	<?php //Untuk Proxy ?>
 	&raquo; Proxy :<br />
 	<?PHP
 	echo "&nbsp;&nbsp;";
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		?>
 		<img src="pics/proxy.png" align="absmiddle">
-		<?
-		echo $_SERVER['HTTP_X_FORWARDED_FOR'];} 
+		<?php
+		echo $_SERVER['HTTP_X_FORWARDED_FOR'];}
 	else {
 		?>
 		<img src='pics/unknown.png' align='absmiddle'>
-		<?
+		<?php
 		echo "Unknown / LAN";}
 	//if (isset($_ENV['HTTP_X_FORWARDED_FOR'])) {echo $_ENV['HTTP_X_FORWARDED_FOR'];} else {echo "Unknown";}
 	?><br /><br />
-	
-	<? //Untuk Host Address ?>
+
+	<?php //Untuk Host Address ?>
 	&raquo; Host Address :<br />
-   	<?PHP 
+   	<?PHP
 	echo "&nbsp;&nbsp;";
 	if (isset($_SERVER['REMOTE_HOST'])) {
 		?>
 		<img src='pics/host.png' align='absmiddle'>
-		<?
-		echo $_SERVER['REMOTE_HOST'];} 
+		<?php
+		echo $_SERVER['REMOTE_HOST'];}
 	else {
 		?>
 		<img src='pics/unknown.png' align='absmiddle'>
-		<?
+		<?php
 		echo "Unknown / LAN";}
 	//if (isset($_ENV['REMOTE_HOST'])) {echo $_ENV['REMOTE_HOST'];} else {echo "Unknown";}
 	?><br /><br />
 	-->
-	<? //Untuk Browser ?>
+	<?php //Untuk Browser ?>
 	&raquo; Browser :<br />
-	<? 
+	<?php
 	echo "&nbsp;";
-	
+
 	$HUA = $_SERVER['HTTP_USER_AGENT'];
 	//$HUA = getenv("HTTP_USER_AGENT");
-	
+
 	if(
-	  (strstr($HUA, "Nav")) || 
-	  (strstr($HUA, "Gold")) || 
-	  (strstr($HUA, "X11")) || 
-	  (strstr($HUA, "Mozilla")) AND 
+	  (strstr($HUA, "Nav")) ||
+	  (strstr($HUA, "Gold")) ||
+	  (strstr($HUA, "X11")) ||
+	  (strstr($HUA, "Mozilla")) AND
 	  (!strstr($HUA, "MSIE"))
-	  ) 
+	  )
 	    {
 		?>
 		<img src="pics/browser/firefox.gif" align="absmiddle">
-		<?
-		}				
+		<?php
+		}
 	elseif(strstr($HUA, "MSIE")) {
 		?>
 		<img src="pics/browser/msie.gif" align="absmiddle">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "Opera")) {
 		?>
 		<img src="pics/browser/opera.gif" align="absmiddle">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "safari")) {
 		?>
 		<img src="pics/browser/unknown.png">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "Safari")) {
 		?>
 		<img src="pics/browser/unknown.png">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "Lynx")) {
 		?>
 		<img src="pics/browser/lynx.gif">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "WebTV")) {
 		?>
 		<img src="pics/browser/webtv.gif">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "Konqueror")) {
 		?>
 		<img src="pics/browser/konqueror.gif">
-		<?
+		<?php
 		}
 	elseif(strstr($HUA, "Netscape")) {
 		?>
 		<img src="pics/browser/netscape.gif">
-		<?
+		<?php
 		}
 	elseif(
-		  (stristr($HUA, "bot")) || 
-		  (strstr($HUA, "Google")) || 
-		  (strstr($HUA, "Slurp")) || 
-		  (strstr($HUA, "Scooter")) || 
-		  (stristr($HUA, "Spider")) || 
+		  (stristr($HUA, "bot")) ||
+		  (strstr($HUA, "Google")) ||
+		  (strstr($HUA, "Slurp")) ||
+		  (strstr($HUA, "Scooter")) ||
+		  (stristr($HUA, "Spider")) ||
 		  (stristr($HUA, "Infoseek"))
-		  ) 
+		  )
 		{
 		?>
 		<img src="pics/browser/unknown.png">
-		<?
+		<?php
 		}
 	else {
 		?>
 		<img src="pics/browser/unknown.png">
-		<?
+		<?php
 		}
-	
+
 	if(
-	  (strstr($HUA, "Nav")) || 
-	  (strstr($HUA, "Gold")) || 
-	  (strstr($HUA, "X11")) || 
-	  (strstr($HUA, "Mozilla")) || 
-	  (strstr($HUA, "Netscape")) AND 
+	  (strstr($HUA, "Nav")) ||
+	  (strstr($HUA, "Gold")) ||
+	  (strstr($HUA, "X11")) ||
+	  (strstr($HUA, "Mozilla")) ||
+	  (strstr($HUA, "Netscape")) AND
 	  (!strstr($HUA, "MSIE"))
-	  ) 
+	  )
 	  $browser = "Mozilla FireFox";
-				
+
 	elseif(strstr($HUA, "MSIE")) $browser = "Internet Explorer";
 	elseif(strstr($HUA, "Opera")) $browser = "Opera";
 	elseif(strstr($HUA, "safari")) $browser = "Safari";
@@ -166,189 +166,189 @@
 	echo "$browser";
 	//if (isset($_ENV['HTTP_USER_AGENT'])) {echo $_ENV['HTTP_USER_AGENT'];} else {echo "Unknown";}
 	?><br /><br />
-	
-	<? //Untuk Operating System ?>
+
+	<?php //Untuk Operating System ?>
 	&raquo; Operating System :<br />
-   		<?PHP 
+   		<?PHP
 			echo "&nbsp;";
 
 			$HUA = $_SERVER['HTTP_USER_AGENT'];
 			//$HUA = getenv("HTTP_USER_AGENT");
-	
+
 			if(
 	  		  (strstr($HUA, "Windows NT 5.2")) ||
 			  (strstr($HUA, "Windows NT 5.1")) ||
 			  (strstr($HUA, "Windows NT 5.0")) ||
-			  (strstr($HUA, "windows NT")) || 
+			  (strstr($HUA, "windows NT")) ||
 			  (strstr($HUA, "windows 98")) ||
 	  		  (strstr($HUA, "windows 95"))
 	 		  )
 	    	  {
 		?>
 		<img src="pics/os/win.gif">
-		<?
+		<?php
 			  }
 			elseif(strstr($HUA, "Windows NT 6.0"))
 			  {
 		?>
 		<img src="pics/os/vista.png">
-		<?
+		<?php
 			  }
 			elseif(
-		  		  (strstr($HUA, "Mac")) || 
+		  		  (strstr($HUA, "Mac")) ||
 		  		  (strstr($HUA, "PPC"))
 		  		  )
 		  	  {
 		?>
 		<img src="pics/os/mac.gif">
-		<?
+		<?php
 			  }
-			elseif(strstr($HUA, "Mac_PowerPC")) 
+			elseif(strstr($HUA, "Mac_PowerPC"))
 			  {
 		?>
 		<img src="pics/os/mac.gif">
-		<?
+		<?php
 			  }
-			elseif(strstr($HUA, "Mac_PPC")) 
+			elseif(strstr($HUA, "Mac_PPC"))
 			  {
 		?>
 		<img src="pics/os/mac.gif">
-		<?
+		<?php
 			  }
-			elseif(strstr($HUA, "Macintosh")) 
+			elseif(strstr($HUA, "Macintosh"))
 			  {
 		?>
 		<img src="pics/os/mac.gif">
-		<?
-			  }					
-			
-			elseif(strstr($HUA, "Linux")) 
+		<?php
+			  }
+
+			elseif(strstr($HUA, "Linux"))
 			  {
 		?>
 		<img src="pics/os/tux.gif">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "Debian")) 
+	elseif(strstr($HUA, "Debian"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "Fedora")) 
+	elseif(strstr($HUA, "Fedora"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "Slackware")) 
+	elseif(strstr($HUA, "Slackware"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "Redhat")) 
+	elseif(strstr($HUA, "Redhat"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "Ubuntu")) 
+	elseif(strstr($HUA, "Ubuntu"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "Suse")) 
+	elseif(strstr($HUA, "Suse"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
 
-					
-	elseif(strstr($HUA, "X11")) 
+
+	elseif(strstr($HUA, "X11"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "BSD")) 
+	elseif(strstr($HUA, "BSD"))
 		  {
 		  ?>
 		  <img src="pics/os/bsd.gif">
-		  <?
+		  <?php
 		  }
-	elseif(strstr($HUA, "SunOS")) 
+	elseif(strstr($HUA, "SunOS"))
 		  {
 		  ?>
 		  <img src="pics/os/sun.gif">
-		  <?
+		  <?php
 		  }
-	elseif(strstr($HUA, "FreeBSD")) 
+	elseif(strstr($HUA, "FreeBSD"))
 		  {
 		  ?>
 		  <img src="pics/os/bsd.gif">
-		  <?
+		  <?php
 		  }
-	elseif(strstr($HUA, "IRIX")) 
+	elseif(strstr($HUA, "IRIX"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "NetBSD")) 
+	elseif(strstr($HUA, "NetBSD"))
 		  {
 		  ?>
 		  <img src="pics/os/bsd.gif">
-		  <?
+		  <?php
 		  }
-	elseif(strstr($HUA, "HP-UX")) 
+	elseif(strstr($HUA, "HP-UX"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "AIX")) 
+	elseif(strstr($HUA, "AIX"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "QNX")) 
+	elseif(strstr($HUA, "QNX"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-    					
-    					
-    elseif(strstr($HUA, "BeOS")) 
+
+
+    elseif(strstr($HUA, "BeOS"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-	elseif(strstr($HUA, "OS/2")) 
+	elseif(strstr($HUA, "OS/2"))
 		  {
 		  ?>
 		  <img src="pics/os/os2.gif">
-		  <?
+		  <?php
 		  }
-	elseif(strstr($HUA, "AmigaOS")) 
+	elseif(strstr($HUA, "AmigaOS"))
 			  {
 		?>
 		<img src="pics/os/unknown.png">
-		<?
+		<?php
 		  	  }
-				
+
 	else {
 			  {
 			  ?>
 			  <img src="pics/os/unknown.png">
-			  <?
+			  <?php
 		  	  }
 	}
-					
+
 	if(strstr($HUA, "Windows NT 6.0")) $os = "Windows Vista";
 	elseif(strstr($HUA, "Windows NT 5.2")) $os = "Windows 2003";
 	elseif(strstr($HUA, "Windows NT 5.1")) $os = "Windows XP";
@@ -356,14 +356,14 @@
 	elseif(strstr($HUA, "windows NT")) $os = "Windows NT";
 	elseif(strstr($HUA, "windows 98")) $os = "Windows 98";
 	elseif(strstr($HUA, "windows 95")) $os = "Windows 95";
-					
-		
+
+
 	elseif((strstr($HUA, "Mac")) || (strstr($HUA, "PPC"))) $os = "Mac OS";
 	elseif(strstr($HUA, "Mac_PowerPC")) $os = "Mac OS";
 	elseif(strstr($HUA, "Mac_PPC")) $os = "Mac OS";
 	elseif(strstr($HUA, "Macintosh")) $os = "Mac OS";
-					
-					
+
+
 	elseif(strstr($HUA, "Linux")) $os = "Linux";
 	elseif(strstr($HUA, "Debian")) $os = "Debian";
 	elseif(strstr($HUA, "Fedora")) $os = "Fedora";
@@ -372,7 +372,7 @@
 	elseif(strstr($HUA, "Ubuntu")) $os = "Ubuntu";
 	elseif(strstr($HUA, "Suse")) $os = "Suse";
 
-					
+
 	elseif(strstr($HUA, "X11")) $os = "Unix";
 	elseif(strstr($HUA, "BSD")) $os = "BSD";
 	elseif(strstr($HUA, "SunOS")) $os = "SunOS";
@@ -382,43 +382,43 @@
 	elseif(strstr($HUA, "HP-UX")) $os = "HP-UX";
 	elseif(strstr($HUA, "AIX")) $os = "AIX";
 	elseif(strstr($HUA, "QNX")) $os = "QNX";
-    					
-    					
+
+
     elseif(strstr($HUA, "BeOS")) $os = "BeOS";
 	elseif(strstr($HUA, "OS/2")) $os = "OS/2";
 	elseif(strstr($HUA, "AmigaOS")) $os = "AmigaOS";
-				
+
 	else {
 		$os = "Other";
 	}
-	
+
 	echo "$os";
-	
+
 	?><br /><br />
-	
-	<? //Untuk Processing Time ?>
+
+	<?php //Untuk Processing Time ?>
 	&raquo; Processing Time :<br />
-	<?	
+	<?php
 	echo "&nbsp;&nbsp;";
 	?>
 	<img src="pics/processing_time.png" align="absmiddle">
-	<?
+	<?php
 	function getmicrotime() {
 		// split output from microtime() on a space
 		list($usec, $sec) = explode(" ",microtime());
-		     
+
 		// append in correct order
-		return ((float)$usec + (float)$sec); 
-		} 
-			
+		return ((float)$usec + (float)$sec);
+		}
+
 		$start = getmicrotime();
-			    
+
 		for ($i=0; $i < 10000; $i++){
 		    //loop 10000 times
 		}
-			
+
 		$finish = getmicrotime();
-			
+
 		printf("%.3f seconds", $finish - $start);
 	?>
 </div>

@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 // generate 5 digit random number
 $rand = rand(10000, 99999);
 
@@ -10,29 +10,29 @@ $_SESSION['image__XvzF__value'] = md5($rand);
 $image = imagecreate(50, 23);
 
 // use white as the background image
-$bgColor = imagecolorallocate ($image, 255, 255, 255); 
+$bgColor = imagecolorallocate ($image, 255, 255, 255);
 
 // the text color is black
-$textColor = imagecolorallocate ($image, 0, 0, 0); 
+$textColor = imagecolorallocate ($image, 0, 0, 0);
 
 // write the random number
-imagestring ($image, 4, 4, 4, $rand, $textColor); 
+imagestring ($image, 4, 4, 4, $rand, $textColor);
 
-// send several headers to make sure the image is not cached 
+// send several headers to make sure the image is not cached
 // taken directly from the PHP Manual
 
-// Date in the past 
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
+// Date in the past
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
-// always modified 
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
+// always modified
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 
-// HTTP/1.1 
-header("Cache-Control: no-store, no-cache, must-revalidate"); 
-header("Cache-Control: post-check=0, pre-check=0", false); 
+// HTTP/1.1
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Cache-Control: post-check=0, pre-check=0", false);
 
-// HTTP/1.0 
-header("Pragma: no-cache"); 
+// HTTP/1.0
+header("Pragma: no-cache");
 
 // send the content type header so the image is displayed properly
 header('Content-type: image/jpeg');

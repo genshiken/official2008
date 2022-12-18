@@ -1,4 +1,4 @@
-<? 
+<?php
 #=================================================#
 #												  #
 # Fungsi Menampilkan 5 buah Anime Reviews Terbaru #
@@ -8,16 +8,16 @@
 function AnimeReviews()
 {
   include "conf.php";
-  
+
   /*
   Table Properties :
   id_animereviews				bigint(20)		primary key
-  waktu_upload_animereviews		datetime				 	 	 	 	 	 	 
+  waktu_upload_animereviews		datetime
   judul_animereviews			tinytext
-  image_animereviews			text				 	 	 	 	 	 	 
-  isi_animereviews				longtext				
+  image_animereviews			text
+  isi_animereviews				longtext
   */
-  
+
   $table1 = "CREATE TABLE IF NOT EXISTS reviews_anime
   (
     id_animereviews	BIGINT	NOT NULL	PRIMARY KEY,
@@ -27,7 +27,7 @@ function AnimeReviews()
 	isi_animereviews	LONGTEXT	NOT NULL
   )";
   $buat_table2 = mysql_db_query($dbname,$table1);
-  
+
   ?>
 	<div class="listsort">
 		<a href="index.php?m=search_reviews_a_nime&amp;char=else">#</a> |
@@ -59,8 +59,8 @@ function AnimeReviews()
 		<a href="index.php?m=search_reviews_a_nime&amp;char=z">Z</a>
 	</div>
 	<br />
-  <?
-  
+  <?php
+
   $sql = "select count(*) as total from reviews_anime";
   $total = $adoObj->GetOne($sql);
 
@@ -69,39 +69,39 @@ function AnimeReviews()
   $offset = ($page - 1) * $limit;
   $sql = "SELECT * FROM reviews_anime ORDER BY id_animereviews DESC LIMIT $offset,$limit";
   $recordSet = $adoObj->Execute($sql);
-  
+
   if($recordSet !=null){
 
 	while(!$recordSet->EOF){
 		?>
 		<div class="newsbox">
 			<div class="newstitle">
-				<?
+				<?php
 				echo "&raquo; ". $recordSet->fields['judul_animereviews'];
 				?>
 			</div>
 			<div class="newsimage">
-				<?
+				<?php
 				$image_animereviews = $recordSet->fields['image_animereviews'];
-				
+
 				if(strlen($image_animereviews) < 1)
 				{
 				}
 				else
-				{						
+				{
 					$image_path			= $image_upload_dir.$image_animereviews;
 					$image_size			= GetImageSize($image_path);
 					$image_width		= $image_size[0];
-						
+
 					$screen_res_load 	= fopen("dump/screen.txt","r");
 					$screen_res 		= fread($screen_res_load,4);
-						
+
 					if($screen_res == 1280)
 					{
 						$screen_margin		= 145;
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -115,7 +115,7 @@ function AnimeReviews()
 						$screen_margin		= 135;
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -129,7 +129,7 @@ function AnimeReviews()
 						$screen_margin		= 125;
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -143,7 +143,7 @@ function AnimeReviews()
 						$screen_margin		= (0.123 * $screen_res);
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -151,37 +151,37 @@ function AnimeReviews()
 						{
 							echo "<img src='$image_path' alt='' />";
 						}
-					}						
+					}
 				};
 				?>
 			</div>
 			<div class="newsdesc">
-				<?				
+				<?php
 				echo"". $recordSet->fields['isi_animereviews'];
 				echo"<br />";
 				?>
 			</div>
 			<div class="newsdate">
-				<?
+				<?php
 				echo"Posted : ". $recordSet->fields['waktu_upload_animereviews'];
 				echo"<br />";
 				?>
 			</div>
 		</div>
-  		<br />	 	
-  		<?
+  		<br />
+  		<?php
 		$recordSet->MoveNext();
 	}
 	?>
 	<div class="pageswitch">
-	<?
+	<?php
 		$page = new Paging1($total,$limit);
 		$page->display();
 		echo "<p>&nbsp;<br /></p>";
-  }		
+  }
 	?>
   	</div>
-  	<?
+  	<?php
 }
 
 function SearchAnimeReviews()
@@ -221,7 +221,7 @@ function SearchAnimeReviews()
 		Search Result :<br />
 	</div>
 	<div class="newslist">
-		<?
+		<?php
 			$key = Globals::getVar('char');
 			$found=0;
 			if($key == "else")
@@ -234,31 +234,31 @@ function SearchAnimeReviews()
 				$sql = "select * from reviews_anime WHERE judul_animereviews REGEXP CONVERT( _utf8 '^$key' USING latin1 ) COLLATE latin1_general_ci ORDER BY judul_animereviews";
 	        }
 			$recordSet = $adoObj->Execute($sql);
-								      	
+
 			/** iterasi*/
 	        if($recordSet !=null)
-			{	
+			{
 				while(!$recordSet->EOF)
-				{	
+				{
 					$found++;
 					?>
 					<div class="newslist">
-						<?
-						$page_id 	= $recordSet->fields['id_animereviews'];								
+						<?php
+						$page_id 	= $recordSet->fields['id_animereviews'];
 						echo "&raquo;&nbsp;<a href='index.php?m=result_detailed_reviews_a_nime&id_animereviews=".$page_id."'>".$recordSet->fields['judul_animereviews'] . "</a>";
 						//echo"<br />";
 						?>
-					</div>							
-					<?						
+					</div>
+					<?php
 					$recordSet->MoveNext();
-				}					
+				}
 			}
 			if(empty($found))
 	        {
 			}
 		?>
 	</div>
-	<?
+	<?php
 }
 
 function ResultDetailedAnimeReviews()
@@ -267,36 +267,36 @@ function ResultDetailedAnimeReviews()
   	$no = Globals::getVar("id_animereviews");
   	$sql = "SELECT * FROM reviews_anime WHERE id_animereviews='$no'";
   	$recordSet = $adoObj->Execute($sql);
-  
+
   	?>
 	<div class="newsbox">
 		<div class="newstitle">
-			<?
+			<?php
 				echo "&raquo; ". $recordSet->fields['judul_animereviews'];
 			?>
 		</div>
 		<div class="newsimage">
-			<?	
+			<?php
 				$image_animereviews = $recordSet->fields['image_animereviews'];
-					
+
 				if(strlen($image_animereviews) < 1)
 				{
 				}
 				else
-				{						
+				{
 					$image_path			= $image_upload_dir.$image_animereviews;
 					$image_size			= GetImageSize($image_path);
 					$image_width		= $image_size[0];
-				
+
 					$screen_res_load 	= fopen("dump/screen.txt","r");
 					$screen_res 		= fread($screen_res_load,4);
-				
+
 					if($screen_res == 1280)
 					{
 						$screen_margin		= 145;
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -310,7 +310,7 @@ function ResultDetailedAnimeReviews()
 						$screen_margin		= 135;
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -324,7 +324,7 @@ function ResultDetailedAnimeReviews()
 						$screen_margin		= 125;
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -338,7 +338,7 @@ function ResultDetailedAnimeReviews()
 						$screen_margin		= (0.123 * $screen_res);
 						$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 						if($image_width >= $screen_resefective)
-						{							
+						{
 							$image_width = floor($screen_resefective);
 							echo "<img width='$image_width' src='$image_path' alt='' />";
 						}
@@ -346,26 +346,26 @@ function ResultDetailedAnimeReviews()
 						{
 							echo "<img src='$image_path' alt='' />";
 						}
-					}						
+					}
 				};
 			?>
 		</div>
 		<div class="newsdesc">
-			<?				
+			<?php
 				echo"". $recordSet->fields['isi_animereviews'];
 				echo"<br />";
 			?>
 		</div>
 		<div class="fake"><br /></div>
 		<div class="newsdate">
-			<?
+			<?php
 				echo"Posted : ". $recordSet->fields['waktu_upload_animereviews'];
 				echo"<br />";
 			?>
 		</div>
 	</div>
-	<br />	 	
-  	<?	
+	<br />
+  	<?php
 	echo "<a href='javascript:history.go(-1)'>Back</a><br /><br />";
 }
 

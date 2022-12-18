@@ -15,41 +15,41 @@
 // +----------------------------------------------------------------------+
 // | Author: Erick Lazuardi  < erick@divkom.ee.itb.ac.id> 	          |
 // +----------------------------------------------------------------------+
- 
+
 
 class File
 {
 	/** filename */
 	var $fileName;
-	
+
 	/** dirname */
 	var $dirName;
-	
+
 	/** ukuran file */
 	var $fileSize;
-	
+
 	/** tipe file */
 	var $fileType;
-	
+
 	/** file owner */
 	var $fileOwner;
-	
+
 	/** file group */
 	var $fileGroup;
-	
+
 	/** file permission dalam angka */
 	var $filePerm;
 
 	/** array file */
 	var $arrayFile = array();
-	
+
 	/** array dir */
 	var $arrayDir = array();
-	
+
 	/** list error */
 	var $error = array();
-	
-	
+
+
 	/**
 	 * File Constructor
 	 * @param string $filename string nama file
@@ -58,26 +58,26 @@ class File
 	function File($filename="")
 	{
 		if(!empty($filename)){
-		
+
 			$this->fileName = $filename;
-			
+
 			$this->dirName = dirname($filename);
-			
+
 			if($this->isFile($this->filename)){
-				
+
 				$this->fileSize = $this->getSize();
 				$this->fileOwner = $this->getOwner();
 				$this->fileType = $this->getType();
 				$this->fileGroup  = $this->getGroup();
 				$this->filePerm = $this->getPerm();
-			
+
 			}
 		}
 	}
-	
+
 	/**
 	 * function isFile chek apakah file ato tidak
-	 * 
+	 *
 	 * @param string $what adalah string file yang akan dicek
 	 * @return bool
 	 */
@@ -97,7 +97,7 @@ class File
 
 	/**
 	 * function isDir chek apakah direktori ato tidak
-	 * 
+	 *
 	 * @param string $what adalah string direktori yang akan dicek
 	 * @return bool
 	 */
@@ -105,27 +105,27 @@ class File
 	{
 		if(empty($what))
 			$what = $this->dirName;
-			
+
 		$retVal = false;
 
 		if(@is_dir($what)){
 
 			if($fdir = @opendir($what)){
-				
+
 				$retVal = true;
 				@closedir($fdir);
-				
+
 			}
-			
+
 		}
-		
+
 		return $retVal;
-		
+
 	}
-	
+
 	/**
 	 * function read membaca isi file
-	 * 
+	 *
 	 * @param string $dir adalah nama direktori
 	 * @param string $mode adalah chmod /permission direktori
 	 * @return bool
@@ -134,38 +134,38 @@ class File
 	{
 		return @(bool)mkdir($dir,$mode);
 	}
-	
+
 	/**
 	 * function read membaca isi file
-	 * 
+	 *
 	 * @param string $filename adalah nama file yang akan dibaca
 	 * @return bool
-	 */	
+	 */
 	function read($filename="")
 	{
 		if(!empty($filename))
-		
+
 			$filename = $this->fileName;
-		
+
 		if($this->isFile($filename)){
-		
+
 			if($fp = @fopen($filename, "r")){
-			
+
 				$retVal = @fread($filename, $this->getSize($filename));
-			
+
 				@fclose($fp);
-		
+
 			}
-		
+
 			return $retVal;
-			
+
 		}
 
 	}
-	
+
 	/**
-	 * function write menulis ke file 
-	 * 
+	 * function write menulis ke file
+	 *
 	 * @param string $contents adalah string yang akan dimasukan ke file
 	 * @param string $filename adalah nama file yang akan ditulis
 	 * @param char $mode mode tulis file bisa 'w' ato 'a'
@@ -176,23 +176,23 @@ class File
 		if(empty($filename)){
 			$filename = $this->fileName;
 		}
-		
+
 		if(!empty($filename)){
-				
+
 			if($fp = @fopen($filename, $mode)){
-			
+
 				@fputs($fp,$contents);
-			
+
 				@fclose($fp);
-				
+
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * function copy untuk mengcopy file ke direktori
-	 * 
+	 *
 	 * @param string $file adalah file yang akan dicopy
 	 * @param string $dest adalah direktori tujuan
 	 * @return bool
@@ -200,112 +200,112 @@ class File
 	function copy($file, $dest)
 	{
 		if(empty($file) or empty($dest) or !$this->isFile($file) or !$this->isDir($dest)){
-			
+
 			return false;
-			
+
 		}else{
-		
+
 			return @copy($file, $dest."/".$file);
 		}
 	}
-	
+
 	/**
 	 * function copyRec untuk mencopy folder beserta isinya
-	 * 
+	 *
 	 * @param string $from_path adalah path yang akan dicopy
 	 * @param string $to_path adalah path tujuan
 	 * @return bool
 	 */
 	function copyRec($from_path, $to_path)
 	{
-		
+
 		if(substr($from_path,-1) != "/")
-		
+
 			$from_path .= "/";
-			
+
 		if(substr($to_path,-1) != "/")
-		
+
 			$to_path .= "/";
-		
+
 		mkdir($to_path, 0777);
-		
+
 		$this_path = getcwd();
-		
+
 		if (is_dir($from_path)) {
-			
+
 			chdir($from_path);
-			
+
 			$handle=opendir('.');
-			
+
 			while (($file = readdir($handle))!==false) {
-				
+
 				if (($file != ".") && ($file != "..")) {
-				
+
 					if (is_dir($file)) {
 
 						$this->copyRec($from_path.$file."/", $to_path.$file."/");
 						chdir($from_path);
 					}
-											
+
 					if (is_file($file)){
-						
+
 						copy($from_path.$file, $to_path.$file);
-					
+
 					}
-				 
+
 				}
-			
+
 			}
-			
-				
+
+
 		}
-	
-		closedir($handle); 
+
+		closedir($handle);
 
 	}
 
-	
+
 	/**
 	 * function delete untuk mendelete file bisa recursive ato flat
-	 * 
+	 *
 	 * @param string $path adalah nama file / dir yang akan dihapus
 	 * @param string $rec adalah mode delete recursive ato tidak
 	 * @return bool
 	 */
 	function delete($path,$rec = true)
 	{
-		
+
 		if($this->isFile($path)){
-			
+
 			 @unlink($path);
-			
+
 		}else{
 			$fdir = @opendir($path);
-			
+
 			if($fdir){
-				
+
 				while($file = @readdir($fdir)){
-				
+
 					if($file == "." || $file == "..")
 						continue;
-					
+
 					$this->delete($path."/".$file);
-				
+
 				}
-				
+
 			}
-			
+
 			@closedir($fdir);
-			
-			
+
+
 		}
 		@rmdir($path);
-			
+
 	}
-	
+
 	/**
 	 * function deleteArray menghapus file yang terdapat di array
-	 * 
+	 *
 	 * @param string $dirname adalah direktori letak file
 	 * @param array $arrayFile adalah array file yang akan dihapus
 	 * @return bool
@@ -314,45 +314,45 @@ class File
 	{
 		if(!is_array($arrayFile))
 			return FALSE;
-	
+
 		foreach($arrayFile as $fileItem)
-			
+
 			$this->delete($dir."/".$fileItem);
 	}
 
 	/**
 	 * function download untuk memforce download
-	 * 
+	 *
 	 * @param NULL
 	 * @return bool
 	 */
 	function download()
 	{
 		if(!empty($this->fileName) and $this->isFile($this->filename)){
-			
+
 			if(!headers_sent()){
-				
+
 				header( "Content-type: ".$this->fileType );
-				
+
 				header( "Content-Length: ".$this->fileSize );
-				
+
 				header( "Content-Disposition: filename=".$this->fileName );
-				
+
 				header( "Content-Description: Download Data" );
-				
+
 				$retVal = $this->read($this->fileName);
-				
+
 				echo $retVal;
-				
+
 			}
 		}
 	}
-	
-	
-		
+
+
+
 	/**
 	 * function getType untuk mendapatkan tipe file
-	 * 
+	 *
 	 * @param mixed $filename adalah nama file yang akan dicari tipenya
 	 * @return bool
 	 */
@@ -494,42 +494,42 @@ class File
 		         ".avi" => "video/x-msvideo",
 		         ".movie" => "video/x-sgi-movie",
 		         ".ice" => "x-conference-xcooltalk");
-		   
+
 		   if(empty($filename)){
-		   	
+
 		   	$filename = $this->fileName;
-		   	
+
 		   	$ext = ".".strtolower($this->getExtension($filename));
-		   	
+
 		   	if(array_key_exists($ext,$mimetypes)){
-		   		
+
 		   		return $mimetypes[$ext];
-		   		
+
 		   	}
 		   }
-		   
+
 	}
-	
+
 	/**
 	 * function getExtension mencari ekstensi file
-	 * 
+	 *
 	 * @param mixed $filename yang akan diproses
 	 * @return string ekstensi file
 	 */
 	function getExtension($filename="")
 	{
 		if(empty($filename)){
-			
-			$filename = $this->fileName;	
+
+			$filename = $this->fileName;
 		}
 		$fp = explode(".",$filename);
-			
+
 			return $fp[count($fp) - 1];
 	}
-	
+
 	/**
 	 * function getOwner
-	 * 
+	 *
 	 * @param mixed $filename adalah nama file
 	 * @return string
 	 */
@@ -537,9 +537,9 @@ class File
 	{
 		if(empty($filename)){
 
-			$filename = $this->fileName;	
+			$filename = $this->fileName;
 		}
-		
+
 		return fileowner($filename);
 	}
 
@@ -552,8 +552,8 @@ class File
 	function getGroup($filename = "")
 	{
 		if(empty($filename)){
-			
-			$filename = $this->fileName;	
+
+			$filename = $this->fileName;
 		}
 		return filegroup($filename);
 	}
@@ -620,12 +620,12 @@ class File
 				}
 
 				closedir($ldir);
-				
+
 				return $collection;
-			}	
-			
+			}
+
 		}
-		
+
 	}
 }
 

@@ -1,21 +1,21 @@
-<?
+<?php
 /*
 	By	: Benny Elian
 	=> Detect System Type
 	=> Determine The Suitable Algorithm
 	=> Perform Matched Server Storage Information
 	*/
-	
+
 	// Detect System Type
 	$HUA = $_SERVER['HTTP_USER_AGENT'];
-	
+
 	// Determine The Suitable Algorithm
 	if(
-		(strstr($HUA, "Windows NT 6.0")) || 
+		(strstr($HUA, "Windows NT 6.0")) ||
 		(strstr($HUA, "Windows NT 5.2")) ||
 		(strstr($HUA, "Windows NT 5.1")) ||
 		(strstr($HUA, "Windows NT 5.0")) ||
-		(strstr($HUA, "windows NT")) || 
+		(strstr($HUA, "windows NT")) ||
 		(strstr($HUA, "windows 98")) ||
 		(strstr($HUA, "windows 95"))
 	   )
@@ -28,49 +28,49 @@
         		$freespace			= disk_free_space($drive.':');
         		$total_space        = disk_total_space($drive.':');
 				$used_space			= $total_space - $freespace;
-        		$percentage_free    = $freespace ? round($freespace / $total_space, 4) * 100 : 0;				
+        		$percentage_free    = $freespace ? round($freespace / $total_space, 4) * 100 : 0;
 				$percentage_used	= $used_space ? round($used_space / $total_space, 4) * 100 : 0;
 				// Perform Matched Server Storage Information
 				include "DiskInformationDOS-HTML.php";
        		}
-		}					
+		}
 	}
 	/*
 	elseif(
-			(strstr($HUA, "Linux")) || 
-			(strstr($HUA, "Debian")) || 
-			(strstr($HUA, "Fedora")) || 
-			(strstr($HUA, "Slackware")) || 
-			(strstr($HUA, "Redhat")) || 
-			(strstr($HUA, "Ubuntu")) || 
-			(strstr($HUA, "Suse")) || 
-			(strstr($HUA, "X11")) || 
-			(strstr($HUA, "BSD")) || 
-			(strstr($HUA, "FreeBSD")) || 
+			(strstr($HUA, "Linux")) ||
+			(strstr($HUA, "Debian")) ||
+			(strstr($HUA, "Fedora")) ||
+			(strstr($HUA, "Slackware")) ||
+			(strstr($HUA, "Redhat")) ||
+			(strstr($HUA, "Ubuntu")) ||
+			(strstr($HUA, "Suse")) ||
+			(strstr($HUA, "X11")) ||
+			(strstr($HUA, "BSD")) ||
+			(strstr($HUA, "FreeBSD")) ||
 			(strstr($HUA, "NetBSD"))
 		   )
 	*/
-	else 
+	else
 	{
 		for ($i=1; $i<=7; $i++)
 		{
-    		if ($i != 2) 
+    		if ($i != 2)
 			{
-        		if ($i ==7) 
+        		if ($i ==7)
 				{
 					$hdt[$i]=disk_total_space('/home');
-					$hdt[$i]=hit($hdt[$i],$i,0);			
+					$hdt[$i]=hit($hdt[$i],$i,0);
 					$hdf[$i]=disk_free_space('/home');
 					$hdf[$i]=hit($hdf[$i],$i,1);
-					?> hd-music = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br /><?
-				} 
-				else 
+					?> hd-music = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br /><?php
+				}
+				else
 				{
 					$hdt[$i]=disk_total_space('/home/ftp/hd'.$i);
 					$hdt[$i]=hit($hdt[$i],$i,0);
 					$hdf[$i]=disk_free_space('/home/ftp/hd'.$i);
 					$hdf[$i]=hit($hdf[$i],$i,1);
-					?> hd<?=$i?> = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br /><?
+					?> hd<?=$i?> = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br /><?php
 				}
 			}
 		}
@@ -111,7 +111,7 @@
 			<td>= Bytes</td>
 		</tr>
 	</table>
-	<?
+	<?php
 
 function hit($cek,$i,$a)
 {

@@ -1,9 +1,9 @@
-<? 
+<?php
 
 function JMusicReviews()
 {
-  include "conf.php";  
-  
+  include "conf.php";
+
   $table1 = "CREATE TABLE IF NOT EXISTS reviews_jmusic
   (
     id_jmusicreviews	BIGINT	NOT NULL	PRIMARY KEY,
@@ -15,7 +15,7 @@ function JMusicReviews()
 	isi_jmusicreviews	LONGTEXT	NOT NULL
   )";
   $buat_table2 = mysql_db_query($dbname,$table1);
-  
+
   ?>
 	<div class="listsort">
 		<a href="index.php?m=search_reviews_j_music&amp;char=else">#</a> |
@@ -47,8 +47,8 @@ function JMusicReviews()
 		<a href="index.php?m=search_reviews_j_music&amp;char=z">Z</a>
 	</div>
 	<br />
-  <?
-  
+  <?php
+
   $sql = "select count(*) as total from reviews_jmusic";
   $total = $adoObj->GetOne($sql);
 
@@ -57,50 +57,50 @@ function JMusicReviews()
   $offset = ($page - 1) * $limit;
   $sql = "SELECT * FROM reviews_jmusic ORDER BY id_jmusicreviews DESC LIMIT $offset,$limit";
   $recordSet = $adoObj->Execute($sql);
-  
+
   if($recordSet !=null){
 
 	while(!$recordSet->EOF){
 		?>
 		<div class="newsbox">
 			<div class="newstitle">
-				<div class="info_left1"><? echo "&raquo; Song Title "; ?></div>
-				<div class="info_right1"><? echo ": ". $recordSet->fields['judul_jmusicreviews']; ?></div>
-				<div class="info_left1"><? echo "&raquo; Artist "; ?></div>
-				<div class="info_right1"><? echo ": ". $recordSet->fields['artist_jmusicreviews']; ?></div>
-				<div class="info_left1"><? echo "&raquo; Album "; ?></div>
-				<div class="info_right1"><? echo ": ". $recordSet->fields['album_jmusicreviews']; ?></div>
-				<div class="info_left1"><? echo "&raquo; OST of "; ?></div>
-				<div class="info_right1"><? echo ": ". $recordSet->fields['ost_jmusicreviews']; ?></div>
+				<div class="info_left1"><?php echo "&raquo; Song Title "; ?></div>
+				<div class="info_right1"><?php echo ": ". $recordSet->fields['judul_jmusicreviews']; ?></div>
+				<div class="info_left1"><?php echo "&raquo; Artist "; ?></div>
+				<div class="info_right1"><?php echo ": ". $recordSet->fields['artist_jmusicreviews']; ?></div>
+				<div class="info_left1"><?php echo "&raquo; Album "; ?></div>
+				<div class="info_right1"><?php echo ": ". $recordSet->fields['album_jmusicreviews']; ?></div>
+				<div class="info_left1"><?php echo "&raquo; OST of "; ?></div>
+				<div class="info_right1"><?php echo ": ". $recordSet->fields['ost_jmusicreviews']; ?></div>
 				<div class="fake"></div>
 			</div>
 			<div class="newsdesc">
-				<?				
+				<?php
 				echo"". $recordSet->fields['isi_jmusicreviews'];
 				echo"<br />";
 				?>
 			</div>
 			<div class="newsdate">
-				<?
+				<?php
 				echo"Posted : ". $recordSet->fields['waktu_upload_jmusicreviews'];
 				echo"<br />";
 				?>
 			</div>
 		</div>
-  		<br />	 	
-  		<?
+  		<br />
+  		<?php
 		$recordSet->MoveNext();
 	}
 	?>
 	<div class="pageswitch">
-	<?
+	<?php
 		$page = new Paging1($total,$limit);
 		$page->display();
 		echo "<p>&nbsp;<br /></p>";
-  }		
+  }
 	?>
   	</div>
-  	<?
+  	<?php
 }
 
 function SearchJMusicReviews()
@@ -140,7 +140,7 @@ function SearchJMusicReviews()
 		Search Result :<br />
 	</div>
 	<div class="newslist">
-		<?
+		<?php
 			$key = Globals::getVar('char');
 			$found=0;
 			if($key == "else")
@@ -153,31 +153,31 @@ function SearchJMusicReviews()
 				$sql = "select * from reviews_jmusic WHERE artist_jmusicreviews REGEXP CONVERT( _utf8 '^$key' USING latin1 ) COLLATE latin1_general_ci ORDER BY artist_jmusicreviews,album_jmusicreviews,judul_jmusicreviews";
 	        }
 			$recordSet = $adoObj->Execute($sql);
-								      	
+
 			/** iterasi*/
 	        if($recordSet !=null)
-			{	
+			{
 				while(!$recordSet->EOF)
-				{	
+				{
 					$found++;
 					?>
 					<div class="newslist">
-						<?
-						$page_id 	= $recordSet->fields['id_jmusicreviews'];								
+						<?php
+						$page_id 	= $recordSet->fields['id_jmusicreviews'];
 						echo "&raquo;&nbsp;<a href='index.php?m=result_detailed_reviews_j_music&id_jmusicreviews=".$page_id."'>".$recordSet->fields['artist_jmusicreviews'] . " | <font color='blue'>in &quot;".$recordSet->fields['album_jmusicreviews'] ."&quot; Album</font> : <font color='green'>".$recordSet->fields['judul_jmusicreviews']."</font></a>";
 						//echo"<br />";
 						?>
-					</div>							
-					<?						
+					</div>
+					<?php
 					$recordSet->MoveNext();
-				}					
+				}
 			}
 			if(empty($found))
 	        {
 			}
 		?>
 	</div>
-	<?
+	<?php
 }
 
 function ResultDetailedJMusicReviews()
@@ -186,35 +186,35 @@ function ResultDetailedJMusicReviews()
   	$no = Globals::getVar("id_jmusicreviews");
   	$sql = "SELECT * FROM reviews_jmusic WHERE id_jmusicreviews='$no'";
   	$recordSet = $adoObj->Execute($sql);
-  
+
   	?>
 	<div class="newsbox">
 		<div class="newstitle">
-			<div class="info_left1"><? echo "&raquo; Song Title "; ?></div>
-			<div class="info_right1"><? echo ": ". $recordSet->fields['judul_jmusicreviews']; ?></div>
-			<div class="info_left1"><? echo "&raquo; Artist "; ?></div>
-			<div class="info_right1"><? echo ": ". $recordSet->fields['artist_jmusicreviews']; ?></div>
-			<div class="info_left1"><? echo "&raquo; Album "; ?></div>
-			<div class="info_right1"><? echo ": ". $recordSet->fields['album_jmusicreviews']; ?></div>
-			<div class="info_left1"><? echo "&raquo; OST of "; ?></div>
-			<div class="info_right1"><? echo ": ". $recordSet->fields['ost_jmusicreviews']; ?></div>
+			<div class="info_left1"><?php echo "&raquo; Song Title "; ?></div>
+			<div class="info_right1"><?php echo ": ". $recordSet->fields['judul_jmusicreviews']; ?></div>
+			<div class="info_left1"><?php echo "&raquo; Artist "; ?></div>
+			<div class="info_right1"><?php echo ": ". $recordSet->fields['artist_jmusicreviews']; ?></div>
+			<div class="info_left1"><?php echo "&raquo; Album "; ?></div>
+			<div class="info_right1"><?php echo ": ". $recordSet->fields['album_jmusicreviews']; ?></div>
+			<div class="info_left1"><?php echo "&raquo; OST of "; ?></div>
+			<div class="info_right1"><?php echo ": ". $recordSet->fields['ost_jmusicreviews']; ?></div>
 			<div class="fake"></div>
 		</div>
 		<div class="newsdesc">
-			<?				
+			<?php
 			echo"". $recordSet->fields['isi_jmusicreviews'];
 			echo"<br />";
 			?>
 		</div>
 		<div class="newsdate">
-			<?
+			<?php
 			echo"Posted : ". $recordSet->fields['waktu_upload_jmusicreviews'];
 			echo"<br />";
 			?>
 		</div>
 	</div>
-  	<br />	 	
-  	<?	
+  	<br />
+  	<?php
 	echo "<a href='javascript:history.go(-1)'>Back</a><br /><br />";
 }
 

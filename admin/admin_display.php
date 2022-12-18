@@ -19,9 +19,9 @@ include "admin/admin_reviews_tokusatsu.php";
 include "pages/credits.php";
 
 function get_switch(){
-	
+
 	$act = empty($_GET['m']) ? ' ':$_GET['m'];
-			
+
 		switch($act){
 			// Maintenance
 			case "CheckTables";
@@ -38,15 +38,15 @@ function get_switch(){
 				break;
 			case "ConfirmPassword";
 				ConfirmPassword();
-				break;	
-			// Official Profile	
+				break;
+			// Official Profile
 			case "BrowseOfficialProfile";
 				BrowseOfficialProfile();
 				break;
 			case "EditOfficialProfile":
 				EditOfficialProfile();
 				break;
-			// Official History	
+			// Official History
 			case "BrowseOfficialHistory";
 				BrowseOfficialHistory();
 				break;
@@ -85,7 +85,7 @@ function get_switch(){
 			case "EditOfficialNews";
 				EditOfficialNews();
 				break;
-			// Official Agenda	
+			// Official Agenda
 			case "AddOfficialAgenda":
 				AddOfficialAgenda();
 				break;
@@ -101,7 +101,7 @@ function get_switch(){
 			case "EditOfficialAgenda";
 				EditOfficialAgenda();
 				break;
-			// Official Gallery	
+			// Official Gallery
 			case "AddGallery":
 				AddGallery();
 				break;
@@ -120,7 +120,7 @@ function get_switch(){
 			// Contact Us
 			case "contact":
 				contact();
-				break;	
+				break;
 			// Anime Reviews
 			case "TambahA_nimeReviews":
 				TambahAnimeReviews();
@@ -185,7 +185,7 @@ function get_switch(){
 			case "EditD_oramaReviews";
 				EditDoramaReviews();
 				break;
-			// Ongoing Projects	
+			// Ongoing Projects
 			case "TambahOngoingProjects":
 				TambahOngoingProjects();
 				break;
@@ -233,13 +233,13 @@ function get_switch(){
 			case "EditJ_MusicReviews";
 				EditJMusicReviews();
 				break;
-			// Credits	
+			// Credits
 			case "credits":
 				credits();
 				break;
 			default:
 				home();
-			}	
+			}
 }
 
 get_switch();

@@ -19,9 +19,9 @@ include "pages/reviews_manga.php";
 include "pages/reviews_tokusatsu.php";
 
 function get_switch(){
-	
+
 	$act = empty($_GET['m']) ? ' ':$_GET['m'];
-			
+
 		switch($act){
 			// Official Part
 			case "official_profile":
@@ -41,21 +41,21 @@ function get_switch(){
 				break;
 			case "detailed_news":
 				DetailedNews();
-				break;	
+				break;
 			case "official_gallery":
 				OfficialGallery();
 				break;
 			case "detailed_gallery":
 				DetailedGallery();
-				break;	
-			// Misc Part	
+				break;
+			// Misc Part
 			case "contact":
 				contact();
 				break;
 			case "credits":
 				credits();
-				break;	
-			// Anime Reviews	
+				break;
+			// Anime Reviews
 			case "reviews_a_nime":
 				AnimeReviews();
 				break;
@@ -75,7 +75,7 @@ function get_switch(){
 			case "result_detailed_reviews_m_anga":
 				ResultDetailedMangaReviews();
 				break;
-			// Tokusatsu Reviews	
+			// Tokusatsu Reviews
 			case "reviews_t_okusatsu":
 				TokusatsuReviews();
 				break;
@@ -85,7 +85,7 @@ function get_switch(){
 			case "result_detailed_reviews_t_okusatsu":
 				ResultDetailedTokusatsuReviews();
 				break;
-			// Dorama Reviews	
+			// Dorama Reviews
 			case "reviews_d_orama":
 				DoramaReviews();
 				break;
@@ -95,7 +95,7 @@ function get_switch(){
 			case "result_detailed_reviews_d_orama":
 				ResultDetailedDoramaReviews();
 				break;
-			// Projects Reviews	
+			// Projects Reviews
 			case "projects":
 				projects();
 				break;
@@ -112,7 +112,7 @@ function get_switch(){
 			case "result_detailed_reviews_j_music":
 				ResultDetailedJMusicReviews();
 				break;
-			// Search (Optional)	
+			// Search (Optional)
 			case "Search":
 				Search();
 				break;
@@ -121,10 +121,10 @@ function get_switch(){
 				break;
 			case "ResultDetail":
 				ResultDetailed();
-				break;											
+				break;
 			default:
 				home();
-			}	
+			}
 }
 
 get_switch();

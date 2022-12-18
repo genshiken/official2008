@@ -1,4 +1,4 @@
-<?
+<?php
 
 function credits(){
 	?>
@@ -19,6 +19,6 @@ function credits(){
 		<div class="info_right1">: Benny Elian</div>
 	</div>
 	<div class="fake"><br /></div>
-	<?
+	<?php
 }
 ?>

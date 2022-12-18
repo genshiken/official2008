@@ -1,4 +1,4 @@
-<?
+<?php
 include 'authme.php';
 ?>
 
@@ -11,13 +11,13 @@ include 'authme.php';
 		<!--<SCRIPT language="javascript" src="javacripts/blockerror.js"></SCRIPT>-->
 		<script type="text/javascript" src="javacripts/daycount1.js"></script>
 	</head>
-	
+
 	<body onload="goforit();blockError();">
-   		<? include "modules/ScreenResolution.php"; ?>
+   		<?php include "modules/ScreenResolution.php"; ?>
 		<!-- Start of Header -->
-		<?PHP include_once "admin/header.php"; ?>	
+		<?PHP include_once "admin/header.php"; ?>
   		<!-- End of header -->
-		
+
 		<!-- Start of Content -->
 		<div class="context">
 			<div class="iframe">
@@ -26,7 +26,7 @@ include 'authme.php';
 						<td style="width:20%;border-left:1px solid indigo; border-right:1px solid indigo; padding-right:3px" valign="top">
 							<div class="sidebar_left">
 								<?PHP include_once "admin/sidebar_left.php"; ?>
-							</div>					
+							</div>
 						</td>
 						<td style="width:80%;border-right:1px solid indigo;padding-right:3px" valign="top">
 							<div class="display">
@@ -36,11 +36,11 @@ include 'authme.php';
 					</tr>
 				</table>
 			</div>
-		</div>	
+		</div>
 		<!-- End of Content -->
-		
+
 		<!-- Start of Header -->
-		<?PHP include_once "admin/footer.php"; ?>	
+		<?PHP include_once "admin/footer.php"; ?>
   		<!-- End of header -->
 
 	</body>

@@ -1,6 +1,6 @@
 <?php require_once('connection.php'); ?>
 <?php require_once('class.ADODB_XML.php'); ?>
-<?
+<?php
 /*
 This example saves the data of the consultation in an file XML
 */

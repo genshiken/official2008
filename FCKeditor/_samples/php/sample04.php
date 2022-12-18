@@ -1,19 +1,19 @@
-<?php 
+<?php
 /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003-2006 Frederico Caldeira Knabben
- * 
+ *
  * Licensed under the terms of the GNU Lesser General Public License:
  * 		http://www.opensource.org/licenses/lgpl-license.php
- * 
+ *
  * For further information visit:
  * 		http://www.fckeditor.net/
- * 
+ *
  * "Support Open Source software. What about a donation today?"
- * 
+ *
  * File Name: sample04.php
  * 	Sample page.
- * 
+ *
  * File Authors:
  * 		Frederico Caldeira Knabben (fredck@fckeditor.net)
  */
@@ -32,11 +32,11 @@ include("../../fckeditor.php") ;
 function FCKeditor_OnComplete( editorInstance )
 {
 	var oCombo = document.getElementById( 'cmbSkins' ) ;
-	
+
 	// Get the active skin.
 	var sSkin = editorInstance.Config['SkinPath'] ;
 	sSkin = sSkin.match( /[^\/]+(?=\/$)/g ) ;
-	
+
 	oCombo.value = sSkin ;
 	oCombo.style.visibility = '' ;
 }

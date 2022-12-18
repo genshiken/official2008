@@ -1,4 +1,4 @@
-<?
+<?php
 
 function contact(){
 	?>
@@ -15,6 +15,6 @@ function contact(){
 			&raquo;&nbsp;Come And Join Us Toward The Unlimited Storage Works!&nbsp;&laquo;<br /><br />
 		</center>
 	</div>
-	<?
+	<?php
 }
 ?>

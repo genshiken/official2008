@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 *This is a class that can process an image on the fly by either generate a thumbnail, apply an watermark to the image, or resize it.
 *
@@ -394,7 +394,7 @@ class Thumbnail {
                 }
         }
         $this->img["src"]=$this->img["des"];
-        $this->img["x"]= $this->img["x_thumb"];  
+        $this->img["x"]= $this->img["x_thumb"];
         $this->img["y"]= $this->img["y_thumb"];
 
     }

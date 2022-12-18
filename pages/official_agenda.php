@@ -1,9 +1,9 @@
-<? 
+<?php
 
 function OfficialAgenda()
 {
-  include "conf.php"; 
-  
+  include "conf.php";
+
   $table1 = "CREATE TABLE IF NOT EXISTS official_agenda
   (
     id_official_agenda	BIGINT	NOT NULL	PRIMARY KEY,
@@ -12,7 +12,7 @@ function OfficialAgenda()
 	isi_official_agenda	LONGTEXT	NOT NULL
   )";
   $buat_table2 = mysql_db_query($dbname,$table1);
-  
+
   $sql = "select count(*) as total from official_agenda";
   $total = $adoObj->GetOne($sql);
 
@@ -21,44 +21,44 @@ function OfficialAgenda()
   $offset = ($page - 1) * $limit;
   $sql = "SELECT * FROM official_agenda ORDER BY id_official_agenda DESC LIMIT $offset,$limit";
   $recordSet = $adoObj->Execute($sql);
-  
+
   if($recordSet !=null){
 
 	while(!$recordSet->EOF){
 		?>
 		<div class="newsbox">
 			<div class="newstitle">
-				<?
+				<?php
 				echo "&raquo; ". $recordSet->fields['judul_official_agenda'];
 				?>
 			</div>
 			<div class="newsdesc">
-				<?				
+				<?php
 				echo"". $recordSet->fields['isi_official_agenda'];
 				echo"<br />";
 				?>
 			</div>
 			<div class="newsdate">
-				<?
+				<?php
 				echo"Last Update : ". $recordSet->fields['waktu_upload_official_agenda'];
 				echo"<br />";
 				?>
 			</div>
 		</div>
-  		<br />	 	
-  		<?
+  		<br />
+  		<?php
 		$recordSet->MoveNext();
 	}
 	?>
 	<div class="pageswitch">
-	<?
+	<?php
 		$page = new Paging1($total,$limit);
 		$page->display();
 		echo "<p>&nbsp;<br /></p>";
-  }		
+  }
 	?>
   	</div>
-  	<?
+  	<?php
 }
 
 ?>

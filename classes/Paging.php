@@ -23,95 +23,95 @@
 
 class Paging1
 {
-	/** @private string $curpage 
+	/** @private string $curpage
 	  * halaman sekarang
 	  */
-	  
+
 	var $curPage;
-	
+
 	/** @private string $startPage
 	  * start link halaman yang akan ditampilkan
 	  */
-	
+
 	var $startPage;
-	
+
 	/** @private string $endPage
 	  * end link halaman yang akan ditampilkan
 	  */
-	  
+
 	var $endPage;
-	
+
 	/** @private int $totalRec
 	  * total record
 	  */
-	
+
 	var $totalRec;
-	
+
 	/** @private int $recPerPage
 	  * jumlah rec yang akan ditampilkan per halaman
 	  */
-	
+
 	var $recPerPage;
-	
+
 	/** @private int $numBeforeAfter
 	  * jumlah link yang akan ditampilkan sebelum curpage dan sesudah curpage
 	  */
-	
+
 	var $numBeforeAfter = 3;
-	
+
 	/** @private string $selfUrl
 	  * url target link
 	  */
-	
+
 	var $selfUrl;
-	
+
 	/** @private bool $isPrevNext
 	  * apakah link prev dan next akan ditampilkan
 	  */
-	
+
 	var $isPrevNext = true;
-	
+
 	/** @private bool $isFirstLast
 	  * apakah link first dan last akan ditampilkan
 	  */
-	
+
 	var $isFirstLast = true;
-	
+
 	/** @private string $prevSymbol
 	  * simbol untuk link prev
 	  */
-	
+
 	var $prevSymbol = "[prev]";
-	
+
 	/** @private string $nextSymbol
 	  * simbol untuk link next
 	  */
-	
+
 	var $nextSymbol = "[next]";
-	
+
 	/** @private string $firstSymbol
 	  * simbol untuk link first
 	  */
-	
+
 	var $firstSymbol = "[first]";
-	
+
 	/** @private string $lastSymbol
 	  * simbol untuk link last
 	  */
-	
+
 	var $lastSymbol = "[last]";
-	
+
 	/** @private obj
 	  * QS obj untuk manipulasi qs
 	  */
-	  
+
 	var $QueryStringObj;
-	
-	
-	
+
+
+
 	var $errMsg = array();
-	
-	
+
+
 	/** constructor
 	  * @param int $totalRec adalah total record
 	  * @param int $recPerPage adalaha jumlah record yang akan ditampilkan per halaman
@@ -130,12 +130,12 @@ class Paging1
 			$this->errMsg[] = "record perpage cannot be null";
 		else
 			$this->recPerPage = $recPerPage;
-		
+
 		$this->selfUrl = $_SERVER['PHP_SELF'];
-		
-		
+
+
 		$this->QueryStringObj = new QueryString;
-		
+
 		$page = $this->QueryStringObj->getValue('page');
 
 		if(empty($page))
@@ -150,18 +150,18 @@ class Paging1
 	  *
 	  * @return int jumlah halaman
 	  */
-	
+
 	function setLinkBeforeAfterCur($link)
 	{
 		$this->numBeforeAfter = $link;
 	}
-	
+
 	/** untuk mengambil jumlah halaman
 	  * @param void
 	  *
 	  * @return int jumlah halaman
 	  */
-	
+
 	function getNumPage()
 	{
 		return ceil($this->totalRec / $this->recPerPage);
@@ -194,14 +194,14 @@ class Paging1
 		else
 			return ($pos >= ($this->totalRec / $this->recPerPage) ? true : false);
 	}
-	
+
 	function setPageInUrl($page)
 	{
 		if($this->QueryStringObj->exist('page'))
 			$this->QueryStringObj->update('page',$page);
 		else
 			$this->QueryStringObj->add('page',$page);
-	}	
+	}
 
 	/** proses penentuan start, end page dan prepare $selfUrl yang akan digunakan
 	  * @param void
@@ -212,12 +212,12 @@ class Paging1
 	function prepare()
 	{
 		$pageNumber = $this->getNumPage();
-		
+
 		if($this->isBOF($this->curPage - $this->numBeforeAfter + 1) or ($this->curPage - $this->numBeforeAfter <= 0)	)
 			$this->startPage = 1;
 		else
 			$this->startPage = $this->curPage - $this->numBeforeAfter + 1;
-		
+
 		if($this->isEOF($this->curPage + $this->numBeforeAfter - 1))
 			$this->endPage = $pageNumber;
 		else
@@ -226,7 +226,7 @@ class Paging1
 			$this->selfUrl .= "?";
 		else
 			$this->selfUrl .= "&";
-		
+
 	}
 
 	/** menampilkan paging
@@ -241,7 +241,7 @@ class Paging1
                 if($this->totalRec < $this->recPerPage){
                         return;
                 }
-                
+
 		$this->prepare();
 		if(!count($this->errMsg)){
 
@@ -271,7 +271,7 @@ class Paging1
 					$str .= "<a href='".$this->selfUrl.$this->QueryStringObj->toString()."'>".$i."</a>&nbsp;";
 				}
 			}
-			
+
 			$str.= "&nbsp;&nbsp;&nbsp;";
 			if($this->isPrevNext){
 				if(!$this->isEOF()){
@@ -295,21 +295,21 @@ class Paging1
 				$str .= "<li>$list</li>\n";
 			}
 		}
-		return $str;	
-		
-		
+		return $str;
+
+
 	}
-	
+
 	/** menampilkan paging
 	  * @param void
 	  *
 	  * @return output
 	  */
-	
+
 	function display()
 	{
 		echo $this->toString();
 	}
-	
+
 }
 ?>

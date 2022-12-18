@@ -1,10 +1,10 @@
-<?
-include "conf.php"; 
-  
+<?php
+include "conf.php";
+
 $stats_browser = "CREATE TABLE IF NOT EXISTS stats_browser
 	(
 	no				INT		NOT NULL	primary key,
-	browser_type	TINYTEXT	NOT NULL, 
+	browser_type	TINYTEXT	NOT NULL,
     browser_count	BIGINT	NOT NULL
   	)";
 $buat_stats_browser = mysql_db_query($dbname,$stats_browser);

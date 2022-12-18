@@ -1,10 +1,10 @@
-<?
-include "conf.php"; 
-  
+<?php
+include "conf.php";
+
 $stats_os = "CREATE TABLE IF NOT EXISTS stats_os
 	(
 	no				INT		NOT NULL	primary key,
-	os_type	TINYTEXT	NOT NULL, 
+	os_type	TINYTEXT	NOT NULL,
     os_count	BIGINT	NOT NULL
   	)";
 $buat_stats_os = mysql_db_query($dbname,$stats_os);
@@ -18,12 +18,12 @@ elseif(strstr($HUA, "Windows NT 5.0")) $os = "Windows 2000";
 elseif(strstr($HUA, "windows NT")) $os = "Windows NT";
 elseif(strstr($HUA, "windows 98")) $os = "Windows 98";
 elseif(strstr($HUA, "windows 95")) $os = "Windows 95";
-					
+
 elseif((strstr($HUA, "Mac")) || (strstr($HUA, "PPC"))) $os = "Mac OS";
 elseif(strstr($HUA, "Mac_PowerPC")) $os = "Mac OS";
 elseif(strstr($HUA, "Mac_PPC")) $os = "Mac OS";
 elseif(strstr($HUA, "Macintosh")) $os = "Mac OS";
-					
+
 elseif(strstr($HUA, "Linux")) $os = "Linux";
 elseif(strstr($HUA, "Debian")) $os = "Debian";
 elseif(strstr($HUA, "Fedora")) $os = "Fedora";
@@ -41,11 +41,11 @@ elseif(strstr($HUA, "NetBSD")) $os = "NetBSD";
 elseif(strstr($HUA, "HP-UX")) $os = "HP-UX";
 elseif(strstr($HUA, "AIX")) $os = "AIX";
 elseif(strstr($HUA, "QNX")) $os = "QNX";
-    					
+
 elseif(strstr($HUA, "BeOS")) $os = "BeOS";
 elseif(strstr($HUA, "OS/2")) $os = "OS/2";
 elseif(strstr($HUA, "AmigaOS")) $os = "AmigaOS";
-			
+
 else {$os = "Other";}
 
 $sql_os = "select * from stats_os WHERE os_type='$os'";

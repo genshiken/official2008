@@ -104,9 +104,9 @@ class GridAdodb
 
 	function GridAdodb(&$adoObj)
 	{
-		
+
 		$this->adoObj = $adoObj;
-		
+
 		/** untuk query string */
 
 		if(class_exists("QueryString")){
@@ -149,7 +149,7 @@ class GridAdodb
 	function addLinkColumn($url,$text,$param=null,$target=null,$popup=null)
 	{
 		$this->listLinkColumn[] = array($url, $text, $target, $popup,$param);
-		
+
 	}
 
 	/**
@@ -529,18 +529,18 @@ class GridAdodb
 
 				foreach($this->listLinkColumn as $list){
 					if(is_array($list[4]) and count($list[4])) {
-						foreach($list[4] as $k => $v) 
+						foreach($list[4] as $k => $v)
 							$this->QueryStringObj->update($k, $v);
-						
+
 					}
-				
+
       					$str .= "\t\t<td align=center class=\"$class\"><div style='font-family:verdana; font-size:9pt;'><a href=\"".$list[0]."?".$this->QueryStringObj->toString()."\" target=\"".$list[2]."\" ".$list[3]." class=gridLink>".$list[1]."</a></div></td>\r\n";
 				}
 			}
 			$str .= "\t</tr>\r\n";
 			$rs->MoveNext();
 		}
-		
+
 		$str .= "</table><br>";
 
 

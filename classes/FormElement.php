@@ -228,7 +228,7 @@ class InputText extends FormElement
 	  *
 	  * @return void
 	  */
-	
+
 	function setValue($value)
 	{
 		$this->updateAttribute(array('value'=>$value));
@@ -419,11 +419,11 @@ class InputPassword extends FormElement
 
 class InputCheck extends FormElement
 {
-	
+
 	var $name;
 	var $value = array();
 	var $matchvalue = array();
-	
+
 
 	function InputCheck($name,$value,$matchvalue,$attrib='',$label='')
 	{
@@ -435,13 +435,13 @@ class InputCheck extends FormElement
 		$this->name = $name;
 		$this->setAttributes("name",$name."[]");
 		$this->value = $value;
-		
+
 		/** match value bisa berupa array atau skalar */
 		if(!is_array($matchvalue))
 			$this->matchvalue[] = $matchvalue;
 		else
 			$this->matchvalue = $matchvalue;
-			
+
 		if(is_array($attrib) && count($attrib))
 			$this->updateAttribute($attrib);
 	}
@@ -473,14 +473,14 @@ class InputCheck extends FormElement
 	{
 		return (bool)  $this->getAttribute('checked');
 	}
-	
+
 	/**
 	  * ambil nilai dari element
 	  * @param void
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
 		$name = $this->name;
@@ -498,27 +498,27 @@ class InputCheck extends FormElement
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		$at = array();
 		foreach($this->attributes as $name => $value)
 			$at[] = "$name=\"$value\"";
 		$at = implode(" ",$at);
-		
-		
+
+
 		foreach($this->value as $value => $label){
 			$str .= "<input type=\"checkbox\" name=\"".$this->name."[]\" value=\"$value\" ".(in_array($value,$this->matchvalue) ? " checked " : "" ).">$label &nbsp";
 		}
-		
+
 		if(!empty($this->label))
 			$str = "<fieldset><legend>".$this->label."</legend>$str</fieldset>";
-		
+
 		return $str;
 	}
 }
 
-/** 
+/**
   * class InputRadio
   * element radio
   *
@@ -540,13 +540,13 @@ class InputRadio extends FormElement
 	  *
 	  * @return void
 	  */
-	  
+
 	function InputRadio($name,$value,$matchvalue,$attrib='',$label='')
 	{
 		$this->setType('radio');
-		
+
 		parent::FormElement();
-		
+
 		$this->setLabel($label);
 		$this->name = $name;
 		$this->value = $value;
@@ -603,10 +603,10 @@ class InputRadio extends FormElement
 		foreach($this->value as $value => $label){
 			$str .= "<input type=radio $at name=".$this->name." value=\"".$value."\" ".($value == $this->matchvalue ? " checked " : "")." >$label&nbsp;\n";
 		}
-		
+
 		if(!empty($this->label))
 			$str = "<fieldset><legend>".$this->label."</legend>$str</fieldset>";
-		
+
 		return $str;
 	}
 }
@@ -632,56 +632,56 @@ class InputFile extends FormElement
 	function InputFile($name,$value,$attrib='')
 	{
 		$this->setType('file');
-		
+
 		parent::FormElement();
-		
+
 		$this->updateAttribute(array('class'=>'text'));
-		
+
 		$this->setLabel($label);
 		$this->updateAttribute(array('name'=>$name));
 		$this->updateAttribute(array('value'=>$value));
 		if(is_array($attrib) && count($attrib))
 			$this->updateAttribute($attrib);
 	}
-	
+
 	/**
 	  * set size ( MAXSIZE ) file yang boleh diupload
 	  * @param string $size adalah ukuran file
 	  *
 	  * @return void
 	  */
-	
+
 	function setSize($size)
 	{
 		$this->updateAttribute(array('size'=>$name));
 	}
-	
+
 	/**
 	  * ambil size file
 	  * @param void
 	  *
 	  * @return string ukuran max file
 	  */
-	
+
 	function getValue()
 	{
 		return $_FILES[$this->getAttribute("name")];
 	}
-	
+
 	/**
 	  * ubah ke bentuk string tag html
 	  * @param void
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		$at = array();
 		foreach($this->attributes as $name => $value)
 			$at[] = "$name=\"$value\"";
 
-		return '<input type="file" '.implode(" ",$at).'/>'; 
+		return '<input type="file" '.implode(" ",$at).'/>';
 	}
 }
 
@@ -721,12 +721,12 @@ class InputHidden extends FormElement
 	  *
 	  * @return void
 	  */
-	
+
 	function setValue($value)
 	{
 		$this->updateAttribute(array('value'=>$value));
 	}
-	
+
 	/**
 	  * ambil nilai dari element
 	  * @param void
@@ -738,21 +738,21 @@ class InputHidden extends FormElement
 	{
 		$this->getAttribute('value');
 	}
-	
+
 	/**
 	  * ubah ke bentuk string tag html
 	  * @param void
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		$at = array();
 		foreach($this->attributes as $name => $value)
 			$at[] = "$name=\"$value\"";
-		
-		return '<input type="hidden" '.implode(" ",$at).'/>'; 
+
+		return '<input type="hidden" '.implode(" ",$at).'/>';
 	}
 }
 
@@ -805,10 +805,10 @@ class Textarea extends FormElement
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
-		
+
         $name = $this->getAttribute('name');
 		if(isset($_GET[$name]))
 			return $_GET[$name];
@@ -817,14 +817,14 @@ class Textarea extends FormElement
 
 		return $this->value;
 	}
-	
+
 	/**
 	  * ubah ke bentuk string tag html
 	  * @param void
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		$at = array();
@@ -835,7 +835,7 @@ class Textarea extends FormElement
 	}
 }
 
-/** 
+/**
   * class Selectbox
   * element Selectbox
   *
@@ -846,11 +846,11 @@ class Selectbox extends FormElement
 	/** nilai yang akan selected ketika ditampilkan */
 
 	var $matchValue;
-	
+
 	/** pilihan yang akan ditampilkan */
-	
+
 	var $options = array();
-	
+
 	/**
 	  * constructor
 	  * @param string $name adalah attribute name
@@ -860,14 +860,14 @@ class Selectbox extends FormElement
 	  *
 	  * @return void
 	  */
-	
+
 	function Selectbox($name,$options,$value='',$attrib='')
 	{
-		
+
 		$this->setType('select');
 
 		parent::FormElement();
-		
+
 		$this->updateAttribute(array('name'=>$name));
 		if(is_array($attrib) && count($attrib))
 			$this->updateAttribute($attrib);
@@ -875,26 +875,26 @@ class Selectbox extends FormElement
 			$this->options = $options;
 		$this->matchValue = $value;
 	}
-	
+
 	/**
 	  * set default value dari element ( OVERIDDEN )
 	  * @param string $value adalah nilai default yang akan ditampilkan
 	  *
 	  * @return void
 	  */
-	
+
 	function setValue($value)
 	{
 		$this->matchValue = $value;
 	}
-	
+
 	/**
 	  * ambil nilai dari element
 	  * @param void
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
                 $name = $this->getAttribute('name');
@@ -902,7 +902,7 @@ class Selectbox extends FormElement
 			return $_GET[$name];
 		elseif(isset($_POST[$name]))
 			return $_POST[$name];
-			
+
 		return $this->matchValue;
 	}
 
@@ -912,7 +912,7 @@ class Selectbox extends FormElement
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		/** tag <select> */
@@ -940,7 +940,7 @@ class Selectbox extends FormElement
 }
 
 
-/** 
+/**
   * class Selectbox
   * element Selectbox
   *
@@ -951,11 +951,11 @@ class SelectOrder extends FormElement
 	/** nilai yang akan selected ketika ditampilkan */
 
 	var $matchValue;
-	
+
 	/** pilihan yang akan ditampilkan */
-	
+
 	var $options = array();
-	
+
 	/**
 	  * constructor
 	  * @param string $name adalah attribute name
@@ -965,14 +965,14 @@ class SelectOrder extends FormElement
 	  *
 	  * @return void
 	  */
-	
+
 	function SelectOrder($name,$options,$value='',$attrib='')
 	{
-		
+
 		$this->setType('selectorder');
 
 		parent::FormElement();
-		
+
 		$this->updateAttribute(array('name'=>$name."[]"));
 		if(is_array($attrib) && count($attrib))
 			$this->updateAttribute($attrib);
@@ -980,26 +980,26 @@ class SelectOrder extends FormElement
 			$this->options = $options;
 		$this->matchValue = $value;
 	}
-	
+
 	/**
 	  * set default value dari element ( OVERIDDEN )
 	  * @param string $value adalah nilai default yang akan ditampilkan
 	  *
 	  * @return void
 	  */
-	
+
 	function setValue($value)
 	{
 		$this->matchValue = $value;
 	}
-	
+
 	/**
 	  * ambil nilai dari element
 	  * @param void
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
                 $name = $this->getAttribute('name');
@@ -1007,7 +1007,7 @@ class SelectOrder extends FormElement
 			return $_GET[$name];
 		elseif(isset($_POST[$name]))
 			return $_POST[$name];
-			
+
 		return $this->matchValue;
 	}
 
@@ -1017,7 +1017,7 @@ class SelectOrder extends FormElement
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		/** tag <select> */
@@ -1044,12 +1044,12 @@ class SelectOrder extends FormElement
 		$strOutput .= '</td></tr>';
 		$strOutput .= "<tr><td align=center><input type=button value=\"pull up  \" onClick=\"moveOptionUp(this.form['".$this->getAttribute('name')."'])\"/>".
 		               "&nbsp;<input type=button value=\"pull down\" onClick=\"moveOptionDown(this.form['".$this->getAttribute('name')."'])\"/></td></tr></table>";
-		
+
 		return $strOutput;
 	}
 }
 
-/** 
+/**
   * class Selectbox
   * element Selectbox
   *
@@ -1065,13 +1065,13 @@ class InputSubmit extends FormElement
 	  *
 	  * @return void
 	  */
-	  
+
 	function InputSubmit($name,$value,$attrib='')
 	{
 		$this->setType('submit');
-		
+
 		parent::FormElement();
-		
+
 		$this->updateAttribute(array('name'=>$name));
 		$this->updateAttribute(array('value'=>$value));
 		if(is_array($attrib) && count($attrib))
@@ -1096,35 +1096,35 @@ class InputSubmit extends FormElement
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
 		if(isset($_GET[$name]))
 			return $_GET[$name];
 		elseif(isset($_POST[$name]))
 			return $_POST[$name];
-		
+
 		return $this->getAttribute('value');
 	}
-	
+
 	/**
 	  * ubah ke bentuk string tag html
 	  * @param void
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		$at = array();
 		foreach($this->attributes as $name => $value)
 			$at[] = "$name=\"$value\"";
-		
-		return '<input type="submit" '.implode(" ",$at).'/>'; 
+
+		return '<input type="submit" '.implode(" ",$at).'/>';
 	}
 }
 
-/** 
+/**
   * class InputReset
   * element button Reset
   *
@@ -1140,61 +1140,61 @@ class InputReset extends FormElement
 	  *
 	  * @return void
 	  */
-	
+
 	function InputReset($name,$value,$attrib='')
 	{
 		$this->setType('reset');
-		
+
 		parent::FormElement();
-		
+
 		$this->updateAttribute(array('name'=>$name));
 		$this->updateAttribute(array('value'=>$value));
 		if(is_array($attrib) && count($attrib))
 			$this->updateAttribute($attrib);
 	}
-	
+
 	/**
 	  * set default value dari element ( OVERIDDEN )
 	  * @param string $value adalah nilai default yang akan ditampilkan
 	  *
 	  * @return void
 	  */
-	
+
 	function setValue($value)
 	{
 		$this->updateAttribute(array('value'=>$value));
 	}
-	
+
 	/**
 	  * ambil nilai dari element
 	  * @param void
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
 		return $this->getAttribute('value');
 	}
-	
+
 	/**
 	  * ubah ke bentuk string tag html
 	  * @param void
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		$at = array();
 		foreach($this->attributes as $name => $value)
 			$at[] = "$name=\"$value\"";
-		
-		return '<input type="reset" '.implode(" ",$at).'/>'; 
+
+		return '<input type="reset" '.implode(" ",$at).'/>';
 	}
 }
 
-/** 
+/**
   * class InputEditor
   * element WYSIWYG editor
   *
@@ -1202,15 +1202,15 @@ class InputReset extends FormElement
 
 class InputEditor extends FormElement
 {
-	
+
 	var $width;
 	var $height;
 	var $name;
 	var $value;
 	var $style="office2003";
 	var $path;
-	
-	
+
+
 	/**
 	  * constructor
 	  * @param string $name adalah attribute name
@@ -1222,7 +1222,7 @@ class InputEditor extends FormElement
 
 	function InputEditor($name,$value="",$width="",$height="500",$path="FCKeditor/")
 	{
-		
+
 		/** initialitation */
 		$this->name = $name;
 		$this->value = $value;
@@ -1230,26 +1230,26 @@ class InputEditor extends FormElement
 		$this->height = $height;
 		$this->path = $path;
 	}
-	
+
 	/**
 	  * set default value dari element ( OVERIDDEN )
 	  * @param string $value adalah nilai default yang akan ditampilkan
 	  *
 	  * @return void
 	  */
-	
+
 	function setValue($value)
 	{
 		$this->value = $value;
 	}
-	
+
 	/**
 	  * ambil nilai dari element
 	  * @param void
 	  *
 	  * @return string nilai element
 	  */
-	
+
 	function getValue()
 	{
 		$name = $this->name;
@@ -1257,17 +1257,17 @@ class InputEditor extends FormElement
 			return $_GET[$name];
 		elseif(isset($_POST[$name]))
 			return $_POST[$name];
-		
+
 		return $this->value;
 	}
-	
+
 	/**
 	  * ubah ke bentuk string tag html
 	  * @param void
 	  *
 	  * @return string tag html
 	  */
-	
+
 	function toString()
 	{
 		if(class_exists("FCKeditor")) {
@@ -1276,10 +1276,10 @@ class InputEditor extends FormElement
 			$editor->Value = $this->value;
 			$editor->Width = "100%";
 			$editor->Height = $this->height;
-			
-			
+
+
 			$editor->Config['SkinPath'] = $this->path."editor/skins/".$this->style."/";
-			
+
 			return $editor->CreateHtml();
 		}else {
 			return "Error : class FCKeditor not found";

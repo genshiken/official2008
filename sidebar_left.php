@@ -7,15 +7,15 @@
 			</div>
 			<!--
 			<div style="clear:both"><br /></div>
-			
+
 			<form id="search" method="post" action="index.php?m=Result">
 				<div>
 				<input onfocus="clearDefault(this)" type="text" name="q" class="sfield" value="Search Anime Reviews" size="20" />
 				<input src="pics/admin/browse.png" value="search" id="inputsubmit" alt="submit" type="image" />
-				<? /*<input type="Submit" title="Look for it!" Name="searchtop" value="GO" class="submit"> */?>
+				<?php /*<input type="Submit" title="Look for it!" Name="searchtop" value="GO" class="submit"> */?>
 				</div>
 			</form>
-			-->	
+			-->
 		</div>
 		<br />
 		<div class="nav">

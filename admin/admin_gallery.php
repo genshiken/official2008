@@ -1,4 +1,4 @@
-<?
+<?php
 
 /** Modul Admin For Galeria */
 /** date : 03/12/2006 8:27PM *
@@ -12,24 +12,24 @@ $destDir4 = "gallery";
 function AddGallery(){
 	include "conf.php";
 	global $adoObj,$destDir4, $allowedExtension3;
-	
+
 	$form = new FormGroup("adminutama.php?m=AddGallery","post");
 	$form->setTitle("<div class='title'>Form Editorial Gallery</div>");
-	
+
 	$form->addText("judul_official_gallery","",array("size"=>80));
 	$form->groupAsRow("<div class='leftbox'>Title</div>");
-	
+
 	$form->addFile("image_official_gallery","",array("size"=>68));
 	$form->groupAsRow("<div class='leftbox'>Picture</div>");
-	
+
 	$form->addEditor("isi_official_gallery");
     $form->groupAsRow("<div class='leftbox'>Description</div><div style='font-size:8pt;'>(Default : Verdana, 9pt, Justify)</div>");
-	
+
 	$form->addSubmit("submit","submit");
 	$form->groupAsRow();
-	
+
 	$form->addRule("judul_official_gallery","required");
-	
+
 	if($form->submitted() && $form->validateElement())
 	{
 		$no = $adoObj->PO_Insert_ID('official_gallery','id_official_gallery') + 1;
@@ -50,13 +50,13 @@ function AddGallery(){
       	$adoObj->StartTrans();
       	include "classes/Thumbnail.class.php";
      	$fot = "gallery/".$nama;
-     	$thumb=new Thumbnail($fot);	
+     	$thumb=new Thumbnail($fot);
      	$thumb->size_width(360);
      	$thumb->quality=100; 		                // [OPTIONAL] set the biggest width and height for thumbnail
 		$thumb->process();
-							
+
 		$thumb->txt_watermark_Hmargin=5;           // [OPTIONAL] set watermark text horizonatal margin in pixels
-		$thumb->txt_watermark_Vmargin=5; 
+		$thumb->txt_watermark_Vmargin=5;
 		$thumb->txt_watermark='Document of Genshiken ITB';	    // [OPTIONAL] set watermark text [RECOMENDED ONLY WITH GD 2 ]
 		$thumb->txt_watermark_color='cccccc';	    // [OPTIONAL] set watermark text color , RGB Hexadecimal[RECOMENDED ONLY WITH GD 2 ]
 		$thumb->txt_watermark_font=2;	            // [OPTIONAL] set watermark text font: 1,2,3,4,5
@@ -69,18 +69,18 @@ function AddGallery(){
    		// generate image
 		$filename=$thumb->unique_filename ( '.' , $nama , 'thumb');  // generate unique filename
 		$status=$thumb->save("gallery/small/".$filename);            // save your thumbnail to file
-							
+
      	//$judul = Globals::getVar("judul_official_gallery");
 		$judul = $_POST['judul_official_gallery'];
      	//$deskripsi = Globals::getVar("isi_official_gallery");
 		$deskripsi = $_POST['isi_official_gallery'];
      	$time=date("d/m/y");
 
-  
+
      	$sql = "INSERT INTO official_gallery (id_official_gallery,waktu_upload_official_gallery,judul_official_gallery,image_official_gallery,isi_official_gallery) values ('$no',now(),'$judul','$nama','$deskripsi')";
       	$res = $adoObj->Execute($sql);
       	$adoObj->CompleteTrans();
-      
+
 		if($res == false)
 		{
         	Util::alertRedirect('Entry Failed!','adminutama.php?&m=ListGallery');
@@ -89,7 +89,7 @@ function AddGallery(){
 		{
         	Util::alertRedirect('Done!','adminutama.php?&m=ListGallery');
      	}
-	}				
+	}
 	else
 	$form->display();
 }
@@ -105,7 +105,7 @@ function ListGallery()
     $grid->addLinkColumn("adminutama.php","<img src='pics/admin/browse.png' border=no width='14px'>",array("menu"=>"official_gallery","m"=>"BrowseGallery"));
     $grid->addLinkColumn("adminutama.php","<img src='pics/admin/edit.png' border=no width='20px'>",array("menu"=>"official_gallery","m"=>"EditGallery"));
     $grid->addLinkColumn("adminutama.php","<img src='pics/admin/delete.png' border=no width='16px'>",array("menu"=>"official_gallery","m"=>"DeleteGallery"));
-    
+
     $grid->display();
 }
 
@@ -122,33 +122,33 @@ function BrowseGallery()
 			?>
 			<div class="newsbox">
 				<div class="newstitle">
-					<?
+					<?php
 					echo "&raquo; ". $recordSet->fields['judul_official_gallery'];
 					echo"<br />";
 					?>
 				</div>
 				<br />
 				<div class="newsimage">
-					<?
+					<?php
 					$image_official_gallery = $recordSet->fields['image_official_gallery'];
-					
+
 					if(strlen($image_official_gallery) < 1)
 						{
 						}
-					else{						
+					else{
 						$image_path			= $image_gallery.$image_official_gallery;
 						$image_size			= GetImageSize($image_path);
 						$image_width		= $image_size[0];
-						
+
 						$screen_res_load 	= fopen("dump/screen.txt","r");
 						$screen_res 		= fread($screen_res_load,4);
-						
+
 						if($screen_res == 1280)
 							{
 							$screen_margin		= 145;
 							$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 							if($image_width >= $screen_resefective)
-								{							
+								{
 								$image_width = floor($screen_resefective);
 								echo "<img width='$image_width' src='$image_path' alt='' />";
 								}
@@ -162,7 +162,7 @@ function BrowseGallery()
 							$screen_margin		= 135;
 							$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 							if($image_width >= $screen_resefective)
-								{							
+								{
 								$image_width = floor($screen_resefective);
 								echo "<img width='$image_width' src='$image_path' alt='' />";
 								}
@@ -176,7 +176,7 @@ function BrowseGallery()
 							$screen_margin		= 125;
 							$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 							if($image_width >= $screen_resefective)
-								{							
+								{
 								$image_width = floor($screen_resefective);
 								echo "<img width='$image_width' src='$image_path' alt='' />";
 								}
@@ -190,7 +190,7 @@ function BrowseGallery()
 							$screen_margin		= (0.123 * $screen_res);
 							$screen_resefective = (0.8 * $screen_res) - $screen_margin;
 							if($image_width >= $screen_resefective)
-								{							
+								{
 								$image_width = floor($screen_resefective);
 								echo "<img width='$image_width' src='$image_path' alt='' />";
 								}
@@ -198,31 +198,31 @@ function BrowseGallery()
 								{
 								echo "<img src='$image_path' alt='' />";
 								}
-							}						
+							}
 						};
 					?>
 				</div>
 				<div class="newsdesc">
-					<?				
+					<?php
 					echo"". $recordSet->fields['isi_official_gallery'];
 					echo"<br />";
 					echo"<br />";
 					?>
 				</div>
 				<div class="newsdate">
-					<?
+					<?php
 					echo"Posted : ". $recordSet->fields['waktu_upload_official_gallery'];
 					echo"<br />";
 					?>
 				</div>
 			</div>
-			<?
+			<?php
 			echo   "<br />
-					<a href='javascript:history.go(-1)'>Back</a> &nbsp;&nbsp; 
-					<a href=adminutama.php?m=EditGallery&id_official_gallery=$no> Edit</a> &nbsp;&nbsp; 
+					<a href='javascript:history.go(-1)'>Back</a> &nbsp;&nbsp;
+					<a href=adminutama.php?m=EditGallery&id_official_gallery=$no> Edit</a> &nbsp;&nbsp;
 					<a href=adminutama.php?m=DeleteGallery&id_official_gallery=$no> Delete</a>
 					<p>&nbsp;</p>";
-			$recordSet->MoveNext();				
+			$recordSet->MoveNext();
 			}
 		}
 }
@@ -231,7 +231,7 @@ function BrowseGallery()
 function DeleteGallery()
 {
 	global $adoObj, $no;
-	
+
 	$no = Globals::getVar('id_official_gallery');
 	$sql = "select image_official_gallery from official_gallery where id_official_gallery='$no'";
 	$row = $adoObj->GetRow($sql);
@@ -244,7 +244,7 @@ function DeleteGallery()
 		unlink($foto);
 		unlink($foto2);
 	}
-				
+
     $sql  = "delete from official_gallery where id_official_gallery='$no'";
     $ret = $adoObj->Execute($sql);
 
@@ -261,24 +261,24 @@ function DeleteGallery()
 
 function EditGallery()
 {
-	
+
 	include "conf.php";
 	global $adoObj,$destDir4, $allowedExtension3, $no;
-	
-	
+
+
 	$no = Globals::getVar('id_official_gallery');
-	
+
 	$sql = "select * from official_gallery where id_official_gallery='$no'";
 	$row = $adoObj->GetRow($sql);
-		
+
 	$form = new FormGroup("adminutama.php?m=EditGallery&id_official_gallery=$no","post");
-	
+
 	$form->setTitle("<div class='title'>Form Editorial Gallery</div>");
-	
+
 	$form->addHidden("id_official_gallery",$no);
 	$form->addText("judul_official_gallery", $row['judul_official_gallery'], array("size"=>80));
 	$form->groupAsRow("<div class='leftbox'>Title</div>");
-	
+
   	$form->addHidden("id_official_gallery",$no);
   	$loc =  "gallery";
   	$info .= "<a href=".$loc."/".$row['image_official_gallery'].">";
@@ -308,21 +308,21 @@ function EditGallery()
 			{
 			$suffix = 'B';
 		};
-	$info .= $suffix; 
+	$info .= $suffix;
 	$info .= "&nbsp;)";
 	$form->addString("<div class='leftbox'>Uploaded Picture</div>","<div class='leftbox'>".$info."</div>");
-	
+
 	$form->addFile("image_official_gallery",$row['image_official_gallery'],array("size"=>68),'');
 	$form->groupAsRow("<div class='leftbox'>New Picture</div>");
-	
+
 	$form->addEditor("isi_official_gallery",$row['isi_official_gallery']);
     $form->groupAsRow("<div class='leftbox'>Description</div>");
-    	
+
 	$form->addSubmit("submit","submit");
 	$form->groupAsRow();
 
 	$form->addRule("judul_official_gallery","required");
-		
+
 	if($form->submitted() && $form->validateElement())
 	{
 		$no = Globals::getVar("id_official_gallery");
@@ -330,7 +330,7 @@ function EditGallery()
 		$row = $adoObj->GetRow($sql);
 		$photo = $row['image_official_gallery'];
 		$extension= strtolower( substr( strrchr($photo, ".") ,1) );
-		
+
       	$upl = new UploadFile('image_official_gallery');
       	$upl->setMaxSize(100000000000);
       	$upl->setDestinationDir($destDir4);
@@ -359,13 +359,13 @@ function EditGallery()
       	{
 			include "classes/Thumbnail.class.php";
      		$fot = "gallery/".$nama;
-     		$thumb=new Thumbnail($fot);	
+     		$thumb=new Thumbnail($fot);
      		$thumb->size_width(360);
      		$thumb->quality=100; 		                // [OPTIONAL] set the biggest width and height for thumbnail
 			$thumb->process();
-							
+
 			$thumb->txt_watermark_Hmargin=5;           // [OPTIONAL] set watermark text horizonatal margin in pixels
-			$thumb->txt_watermark_Vmargin=5; 
+			$thumb->txt_watermark_Vmargin=5;
 			$thumb->txt_watermark='Documentary of Genshiken ITB';	    // [OPTIONAL] set watermark text [RECOMENDED ONLY WITH GD 2 ]
 			$thumb->txt_watermark_color='cccccc';	    // [OPTIONAL] set watermark text color , RGB Hexadecimal[RECOMENDED ONLY WITH GD 2 ]
 			$thumb->txt_watermark_font=2;	            // [OPTIONAL] set watermark text font: 1,2,3,4,5
@@ -384,9 +384,9 @@ function EditGallery()
 			unlink($foto2);
 	      	$sql = "UPDATE official_gallery SET judul_official_gallery='$judul',isi_official_gallery='$deskripsi',image_official_gallery='$nama' where id_official_gallery='$no'";
       	}
-      
+
       	$res = $adoObj->Execute($sql);
-        
+
         if($res == false)
 		{
         	Util::alertRedirect('Failed!','adminutama.php?&m=ListGallery');
@@ -395,7 +395,7 @@ function EditGallery()
 		{
         	Util::alertRedirect('Done!','adminutama.php?&m=ListGallery');
      	}
-   	}			
+   	}
 	else
 	$form->display();
 }

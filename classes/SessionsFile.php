@@ -1,6 +1,6 @@
 <?php
 //------------------------------------------------------------------------------------
-// sessions.php										
+// sessions.php
 // sistem session dengan data disimpan di database MySQL, bukan di filesystem
 // oleh : Erick Lazuardi
 // 1/26/2005 6:12PM
@@ -8,7 +8,7 @@
 
 /* TABLE DEFINITION */
 
-/* 
+/*
 CREATE TABLE `sessions` (
     `id_session` varchar(32) NOT NULL default '',
     `moment` bigint(20) NOT NULL default '0',
@@ -30,7 +30,7 @@ class Sessions
 	 * life time session
 	 */
 	var $lifetime;
-	
+
 
 	/**
 	 * konstruktor digunakan untuk mengeset var mysql, menghapus session yang expire dan membuat
@@ -64,14 +64,14 @@ class Sessions
         $_SESSION[$name] = $data;
 
 	}
-	
+
 	/**
 	 * function is_registered untuk mengetahui apakah variabel sudah terdaftar di tabel session belum
-	 * 
+	 *
 	 * @param string $name adalah nama variabel yang ingin diperiksa
 	 */
 
-	
+
 	function isRegistered($name)
 	{
 		return bool($_SESSION[$name]);
@@ -132,11 +132,11 @@ class Sessions
 
 	/**
 	 * function numUsers untuk mengetahui berapa banyak user / session yang aktif
-	 * 
+	 *
 	 * @param int [$lifetime] adalah waktu user aktif
 	 */
 
-	
+
 	function numUsers($lifetime=300)
 	{
 		$sql = "SELECT id_session FROM ".$this->table." WHERE moment > ".mktime()-$lifetime;

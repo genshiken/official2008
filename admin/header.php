@@ -23,8 +23,8 @@
 		</div>
 	</div>
 	<DIV class="menubar">
-		<img align="absmiddle" src="pics/home.png">&nbsp;<a href="adminutama.php">Home</a> |	
-		<img align="absmiddle" src="pics/config.png">&nbsp;<a href="adminutama.php?m=ChangePassword">Change Password</a> |	
+		<img align="absmiddle" src="pics/home.png">&nbsp;<a href="adminutama.php">Home</a> |
+		<img align="absmiddle" src="pics/config.png">&nbsp;<a href="adminutama.php?m=ChangePassword">Change Password</a> |
 		<img align="absmiddle" src="pics/admin/logout.png">&nbsp;<a href="logout.php">Log Out</a>
     </DIV>
 </DIV>

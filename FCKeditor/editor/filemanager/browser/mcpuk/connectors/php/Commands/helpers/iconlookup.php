@@ -1,19 +1,19 @@
-<?php 
+<?php
 /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003-2005 Frederico Caldeira Knabben
- * 
+ *
  * Licensed under the terms of the GNU Lesser General Public License:
  * 		http://www.opensource.org/licenses/lgpl-license.php
- * 
+ *
  * For further information visit:
  * 		http://www.fckeditor.net/
- * 
+ *
  * "Support Open Source software. What about a donation today?"
- * 
+ *
  * File Name: iconlookup.php
  * 	(!)
- * 
+ *
  * File Authors:
  * 		Grant French (grant@mcpuk.net)
  */
@@ -39,7 +39,7 @@ function iconLookup($mime,$ext) {
 			"model"=>"kmplot.jpg",
 			"multipart"=>"kmultiple.jpg"
 			);
-	
+
 	$extIcons=array(
 			"pdf"=>"pdf.jpg",
 			"ps"=>"postscript.jpg",
@@ -87,13 +87,13 @@ function iconLookup($mime,$ext) {
 		} else {
 			//Check for the generic mime type
 			$mimePrefix="text";
-			$firstSlash=strpos($mime,"/"); 
+			$firstSlash=strpos($mime,"/");
 			if ($firstSlash!==false) $mimePrefix=substr($mime,0,$firstSlash);
-			
+
 			if (in_array($mimePrefix,$mimes)) {
 				return $_SERVER['DOCUMENT_ROOT'].dirname($_SERVER['PHP_SELF'])."/images/".$mimeIcons[$mimePrefix];
 			} else {
-				return $_SERVER['DOCUMENT_ROOT'].dirname($_SERVER['PHP_SELF'])."/images/empty.jpg";	
+				return $_SERVER['DOCUMENT_ROOT'].dirname($_SERVER['PHP_SELF'])."/images/empty.jpg";
 			}
 		}
 	} else {

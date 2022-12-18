@@ -12,13 +12,13 @@
 		<script type="text/javascript" src="javacripts/daycount1.js"></script>
 		<script type="text/javascript" src="javacripts/DropDown.js"></script>
 	</head>
-	
+
 	<body onload="goforit();blockError();">
-		<? include "modules/ScreenResolution.php"; ?>
-		<? include "modules/stats_browser.php"; ?>
-		<? include "modules/stats_os.php"; ?>
+		<?php include "modules/ScreenResolution.php"; ?>
+		<?php include "modules/stats_browser.php"; ?>
+		<?php include "modules/stats_os.php"; ?>
 		<!-- Start of Header -->
-		<?PHP include_once "header.php"; ?>	
+		<?PHP include_once "header.php"; ?>
   		<!-- End of header -->
 
 		<!-- Start of Content -->
@@ -29,7 +29,7 @@
 						<td style="width:20%; border-left:1px solid indigo; border-right:1px solid indigo; padding-right:3px" valign="top">
 							<div class="sidebar_left">
 								<?PHP include_once "sidebar_left.php"; ?>
-							</div>					
+							</div>
 						</td>
 						<td style="width:80%;border-right:1px solid indigo; padding-right:3px;" valign="top">
 							<div class="display">
@@ -39,12 +39,12 @@
 					</tr>
 				</table>
 			</div>
-		</div>			
+		</div>
 		<!-- End of Content -->
 
 		<!-- Start of Footer -->
-			<?PHP include_once "footer.php"; ?>			
+			<?PHP include_once "footer.php"; ?>
 		<!-- End of Footer -->
 	</body>
-	
+
 </html>

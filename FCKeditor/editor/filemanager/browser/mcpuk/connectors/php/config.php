@@ -1,19 +1,19 @@
-<?php 
+<?php
 /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003-2005 Frederico Caldeira Knabben
- * 
+ *
  * Licensed under the terms of the GNU Lesser General Public License:
  * 		http://www.opensource.org/licenses/lgpl-license.php
- * 
+ *
  * For further information visit:
  * 		http://www.fckeditor.net/
- * 
+ *
  * "Support Open Source software. What about a donation today?"
- * 
+ *
  * File Name: config.php
  * 	Configuration file
- * 
+ *
  * File Authors:
  * 		Grant French (grant@mcpuk.net)
  */
@@ -90,25 +90,25 @@ $fckphp_config['auth']['Handler']['SharedKey']="->Shared_K3y-F0R*5enD1NG^auth3nt
 
 //File Area
 $fckphp_config['ResourceAreas']['File'] =array(
-	
+
 	//Files(identified by extension) that may be uploaded to this area
 	'AllowedExtensions'	=>	array("zip","doc","xls","pdf","rtf","csv","jpg","gif","jpeg","png","avi","mpg","mpeg","swf","fla"),
-	
+
 	//Not implemented yet
 	'AllowedMIME'		=>	array(),
-	
+
 	//Set the maximum single upload to this area to 2MB (2048Kb)
 	'MaxSize'		=>	2048,
-	
+
 	//Set disk quota for this resource area to 20MB
 	'DiskQuota'		=>	20,
-	
+
 	//By Default hide all folders starting with a . (Unix standard)
-	'HideFolders'		=>	array("^\."), 
-	
+	'HideFolders'		=>	array("^\."),
+
 	//By Default hide all files starting with a . (Unix standard)
-	'HideFiles'		=>	array("^\."), 
-	
+	'HideFiles'		=>	array("^\."),
+
 	//Do not allow images to be edited in this resource area
 	'AllowImageEditing'	=>	false
 	);
@@ -134,7 +134,7 @@ $fckphp_config['ResourceAreas']['Flash'] =array(
 	'HideFiles'		=>	array("^\."),
 	'AllowImageEditing'	=>	false
 	);
-	
+
 //Media area
 $fckphp_config['ResourceAreas']['Media'] =array(
 	'AllowedExtensions'	=>	array("swf","fla","jpg","gif","jpeg","png","avi","mpg","mpeg"),
@@ -145,8 +145,8 @@ $fckphp_config['ResourceAreas']['Media'] =array(
 	'HideFiles'		=>	array("^\."),
 	'AllowImageEditing'	=>	false
 	);
-	
-/*==============================================================================*/		
+
+/*==============================================================================*/
 
 
 /*------------------------------------------------------------------------------*/
@@ -169,16 +169,16 @@ $fckphp_config['DirNameAllowedChars']=array();
 
 	//Allow numbers
 	for($i=48;$i<58;$i++) array_push($fckphp_config['DirNameAllowedChars'],chr($i));
-	
+
 	//Allow lowercase letters
 	for($i=97;$i<123;$i++) array_push($fckphp_config['DirNameAllowedChars'],chr($i));
-	
+
 	//Allow uppercase letters
 	for($i=65;$i<91;$i++) array_push($fckphp_config['DirNameAllowedChars'],chr($i));
-	
+
 	//Allow space,dash,underscore,dot
 	array_push($fckphp_config['DirNameAllowedChars']," ","-","_",".");
-	
+
 $fckphp_config['FileNameAllowedChars']=$fckphp_config['DirNameAllowedChars'];
 array_push($fckphp_config['FileNameAllowedChars'],')','(','[',']','~');
 /*==============================================================================*/

@@ -1,4 +1,4 @@
-<?
+<?php
 include "conf.php";
 
 $sql = "select count(*) as total from chpass";
@@ -14,29 +14,29 @@ else
 	$sql2 = "select * from chpass where id_chpass=2";
 	$recordSet1 = $adoObj->Execute($sql1);
 	$recordSet2 = $adoObj->Execute($sql2);
-		
+
 	$old_username = $recordSet1->fields['isi_chpass'];
 	$old_password = $recordSet2->fields['isi_chpass'];
-	
+
 	$user = $old_username;
 	$pass = $old_password;
 	}
-		
+
 session_start();
 	$_SESSION['logged']=0;
-	
+
 	if (isset($_POST['submit'])){
 		$user1 = $_POST['useradmin'];
 		$pass1 = $_POST['password'];
 		$kode = $_POST['code'];
-		
+
 		$user2 = md5($user1);
 		$pass2 = md5($pass1);
 		$user3 = md5($user);
 		$pass3 = md5($pass);
 		$verifycode1 = md5($kode);
 		$verifycode2 = $_SESSION['image__XvzF__value'];
-		
+
 		if (($user2== $user3) && ($pass2== $pass3) && ($verifycode1 == $verifycode2)){
 			$_SESSION['logged']=1;
 				$url="adminutama.php";
@@ -47,16 +47,16 @@ session_start();
 						<center>
 							<td align="center" width="100%">
 								<img src="pics/admin/loading.gif" alt="" />
-								<?
-								echo"You are beeing redirected to your original page request! ";		
+								<?php
+								echo"You are beeing redirected to your original page request! ";
 								echo "(If your browser doesn't support this, <a href=adminutama.php>click here </a>)";
-								?>							
+								?>
 								<img src="pics/admin/loading.gif" alt="" />
 							</td>
-						</center>	
+						</center>
 					</tr>
 				</table>
-				<?
+				<?php
 			}
 			else {
 ?>
@@ -69,16 +69,16 @@ session_start();
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="Author" content="Amateurasu, Benny Elian" />
 	</head>
-	
+
 	<body>
-		<? include "modules/ScreenResolution.php"; ?>
+		<?php include "modules/ScreenResolution.php"; ?>
 		<div class="main_box">
 			<br />
 			Please Login here!<br />
 			I'm just a security officer, no cyber criminals, OK!<br />
 			<hr />
 			<form method="post" action="admin.php">
-  				<div><input type="hidden" name="redirect" value="<? echo $_POST['redirect']; ?>" /></div>
+  				<div><input type="hidden" name="redirect" value="<?php echo $_POST['redirect']; ?>" /></div>
 				<div class="box1">
 					<div class="username">User ID</div>
 					<div class="userform">: <input type="text" name="useradmin" size="31" maxlength="30" value="" /></div>
@@ -96,7 +96,7 @@ session_start();
 		</div>
 	</body>
 </html>
-<?
+<?php
 		}
 	}
 
@@ -111,16 +111,16 @@ session_start();
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="Author" content="Amateurasu, Benny Elian" />
 	</head>
-	
+
 	<body>
-		<? include "modules/ScreenResolution.php"; ?>
+		<?php include "modules/ScreenResolution.php"; ?>
 		<div class="main_box">
 			<br />
 			Please Login here!<br />
 			I'm just a security officer, no cyber criminals, OK!<br />
 			<hr />
 			<form  method="post" action="admin.php">
-  				<div><input type="hidden" name="redirect" value="<? echo $_POST['redirect']; ?>" /></div>
+  				<div><input type="hidden" name="redirect" value="<?php echo $_POST['redirect']; ?>" /></div>
 				<div class="box1">
 					<div class="username">User ID</div>
 					<div class="userform">: <input type="text" name="useradmin" size="31" maxlength="30" value="" /></div>
@@ -138,4 +138,4 @@ session_start();
 		</div>
 	</body>
 </html>
-<? } ?>
+<?php } ?>

@@ -1,8 +1,8 @@
 <?php
 
 class Globals
-{  
-  
+{
+
   function getVar($var) {
      if (is_array($_GET)) {
          if (isset($_GET[$var])) {
@@ -38,7 +38,7 @@ class Globals
 
      return $result;
   }
-  
+
   function redirect($url)
   {
   	if(!headers_sent()){
@@ -47,6 +47,6 @@ class Globals
   		echo "<script>document.location = '".$url."'</script>";
   	}
   }
-  	
+
 }
 ?>

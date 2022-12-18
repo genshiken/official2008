@@ -13,7 +13,7 @@
 * @require				ADOdb Database Library for PHP <http://php.weblogs.com/adodb#downloads>
 */
 
-class ADODB_XML 
+class ADODB_XML
 {
 	/**
 	*	Object representation:  File XML
@@ -21,97 +21,97 @@ class ADODB_XML
 	*	@type		objcet
 	*	@access		public
 	*/
-	var $xml = null; 
+	var $xml = null;
 
 	/**
 	*	Creating the members
 	*
 	*	@param		string		Version of file XML
-	*	@param		string		Codification to be used	
+	*	@param		string		Codification to be used
 	*	@access		public
 	*/
-	function ADODB_XML($version = "", $encoding = "") 
+	function ADODB_XML($version = "", $encoding = "")
 	{
 	  $this->xml = new XMLFile($version, $encoding);
 	}
-	
+
 	/**
 	*	It converts Table of the SGBD into file XML
 	*
-	*	@param		object 			Connection of ADOdb Database Library	
-	*	@param		string			Query SQL			
+	*	@param		object 			Connection of ADOdb Database Library
+	*	@param		string			Query SQL
 	*	@param		string			Name of existing file XML
 	*	@access		public
-	*	@return 	void	
-	*/	
-	function ConvertToXML($dbConnection, $strSQL, $filename) 
+	*	@return 	void
+	*/
+	function ConvertToXML($dbConnection, $strSQL, $filename)
 	{
 	  $dbConnection->SetFetchMode(ADODB_FETCH_ASSOC);
 	  $rs = $dbConnection->Execute($strSQL);
-	  
+
 	  $this->xml->create_root();
 	  $this->xml->roottag->name = "ROOT";
-	  
+
 	  while(!$rs->EOF)
 	  {
 		 $this->xml->roottag->add_subtag("ROW", array());
 		 $tag = &$this->xml->roottag->curtag;
-		 
+
 		 for ($i = 0; $i < $rs->_numOfFields ; $i++)
 		 {
-			list($field, $value) = each($rs->fields);		 
+			list($field, $value) = each($rs->fields);
 			$tag->add_subtag($field);
 			$tag->curtag->cdata = $value;
-		 }	  
-	  
+		 }
+
 		 $rs->moveNext();
 	  }
-	
+
 	  $xml_file = fopen($filename, "w" );
 	  $this->xml->write_file_handle( $xml_file );
 	}
-	
-	
+
+
 	/**
 	*	It inserts XML in table of the SGBD
 	*
-	*	@param		object 			Connection of ADOdb Database Library	
-	*	@param		string			Name of to be created file XML	
-	*	@param		string			Table of BD		
+	*	@param		object 			Connection of ADOdb Database Library
+	*	@param		string			Name of to be created file XML
+	*	@param		string			Table of BD
 	*	@access		public
-	*	@return 	void	
-	*/	
-	function InsertIntoDB($dbConnection, $filename, $tablename) 
+	*	@return 	void
+	*/
+	function InsertIntoDB($dbConnection, $filename, $tablename)
 	{
-	
-	  $xml_file = fopen($filename, "r"); 
+
+	  $xml_file = fopen($filename, "r");
 	  $this->xml->read_file_handle($xml_file);
-		  
+
 	  $numRows = $this->xml->roottag->num_subtags();
-	  
-	  for ($i = 0; $i < $numRows; $i++) 
+
+	  for ($i = 0; $i < $numRows; $i++)
 	  {
 		   $arrFields = null;
-		   $arrValues = null; 
-	
+		   $arrValues = null;
+
 		   $row = $this->xml->roottag->tags[$i];
 		   $numFields = $row->num_subtags();
-	
-		   for ($ii = 0; $ii < $numFields; $ii++) 
+
+		   for ($ii = 0; $ii < $numFields; $ii++)
 		   {
 			  $field = $row->tags[$ii];
 			  $arrFields[] = $field->name;
 			  $arrValues[] = "\"".$field->cdata."\"";
 		   }
-	
+
 		   $fields = join($arrFields, ", ");
 		   $values = join($arrValues, ", ");
-	
+
 		   $strSQL = "INSERT INTO $tablename ($fields) VALUES ($values)";
-		   $dbConnection->Execute($strSQL);	  
-	  } 
-		  
+		   $dbConnection->Execute($strSQL);
+	  }
+
 	}
-   
+
 }// end class
 ?>

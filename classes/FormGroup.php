@@ -10,11 +10,11 @@
 class formGroup
 {
 		/** form title */
-		
+
 		var $formTitle = "Untitled";
-				
+
         /** action page */
-        
+
         var $action;
 
         /** enctype wheter use file upload or not */
@@ -34,11 +34,11 @@ class formGroup
         var $tempElement = array();
 
         /** error message system */
-        
+
         var $errMsg = array();
-        
+
         /** hidden fields*/
-        
+
         var $hiddenfields = array();
 
         /** rules */
@@ -76,7 +76,7 @@ class formGroup
                         $retVal .=  "no validator found";
                 }
         }
-        
+
         function setTitle($title)
         {
         		$this->formTitle = $title;
@@ -398,7 +398,7 @@ class formGroup
         {
         		$item = array('rule'=>$rule,'arg'=>$arg);
                 $this->rules[$name][] = $item;
-             	
+
         }
 
         /**
@@ -420,7 +420,7 @@ class formGroup
                 $this->tempElement = array();
 
         }
-        
+
         function submitted()
         {
         	return $_POST['submitted'];
@@ -435,7 +435,7 @@ class formGroup
 
         function validateElement()
         {
-        		
+
                 /** jika terdapat element maka lakukan validasi */
                 if(count($this->rowElement)){
 
@@ -449,20 +449,20 @@ class formGroup
 
                                         /** cek apakah element tersebut membutuhkan validasi ato tidak */
                                         if(array_key_exists($name,$this->rules)){
-												
-												
+
+
 												$itemrules = $this->rules[$name];
 												$err = array();
 	                                            foreach($itemrules as $rul){
-	                                            
+
 	                                            	/** jika argumen tambahan ada, maka merge dengan value dari elemen */
-	                                            	
-	                                   
+
+
 		                                            if(is_array($rul['arg']) && count($rul['arg'])){
-		                                      
+
 		                                                $param = $rul['arg'];
 		                                                array_unshift($param,$item->getValue());
-		                                                
+
 		                                            /** jika argumen tambahan tidak ada, maka argumen adalah nilai elemen */
 		                                            }else{
 		                                                $param = array($item->getValue());
@@ -471,14 +471,14 @@ class formGroup
 	                                          		if($string == 1)
 	                                          			continue;
 	                                                array_unshift($err,$string);
-	                                                
+
 	                                            }
-	            
+
 	                                            if(count($err) == 0)
 		                                           	$errResult = 1;
-	    										else                                        
+	    										else
 	                                            	$errResult = implode(" , ",$err);
-	                                 
+
                                                 /** jika terjadi error maka masukan ke member array err*/
                                                 if($errResult != 1){
                                                         $this->err[$name] = $errResult;
@@ -515,12 +515,12 @@ class formGroup
                 $retVal .=  '<tr><th class=formHead colspan=2>'.$this->formTitle.'</th></tr>';
                 $retVal .=  '<form action="'.$this->action.'" method="'.$this->method.'" enctype="MULTIPART/FORM-DATA">'."\n";
                 $retVal .=  '<input type=hidden name=submitted value=true>';
-                
+
                 /** hidden fields */
                 if(count($this->hiddenfields)){
                 	foreach($this->hiddenfields as $key => $value)
                 		$retval .= "<input type=hidden name=\"$key\" value=\"$value\">\n";
-           		}	
+           		}
 
                 $counter = 1;
 

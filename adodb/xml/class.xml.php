@@ -1,5 +1,5 @@
 <?php
-# XMLFile -- Initial version June 1, 2000 
+# XMLFile -- Initial version June 1, 2000
 # May 29, 2002
 #  Fixed to work with later versions of PHP that have deprecated the call-time
 #  pass by reference syntax.  This may break versions of PHP older than 3, so
@@ -88,13 +88,13 @@
 # everything else.
 #
 # $xml->cleanup();
-# 
+#
 # Note that you can change the elements, delete tags, and do other things
 # to the tree once it has been read from the file.  After it has been changed,
 # you can write it back out and the file will reflect your changes.
 #------------------------------------------------------------------------------
 # Writing a new file:
-# 
+#
 # $xml = new XMLFile();
 # $xml->create_root(); # necessary -- no root is created until requested
 # $xml->roottag->name = 'ROOT';
@@ -222,7 +222,7 @@ class XMLTag
     function add_attribute( $name, $val )
     {
         //$this->attributes[strtoupper($name)] = $val;
-        $this->attributes[$name] = $val;		
+        $this->attributes[$name] = $val;
     }
 
     function clear_attributes()
@@ -233,7 +233,7 @@ class XMLTag
     function set_name( $name )
     {
         //$this->name = strtoupper($name);
-        $this->name = $name;		
+        $this->name = $name;
     }
 
     function set_attributes( $attributes )
@@ -271,7 +271,7 @@ class XMLTag
 
         $keys = array_keys( $this->tags );
         $numtags = sizeof( $keys );
-        # If there are subtags and no data (only whitespace), 
+        # If there are subtags and no data (only whitespace),
         # then go ahead and add a carriage
         # return.  Otherwise the tag should be of this form:
         # <tag>val</tag>
@@ -318,7 +318,7 @@ class XMLFile
     var $roottag;
     var $curtag;
 	var $encoding;
-	var $version;	
+	var $version;
 
 	/**
 	* @description 		Constructor
@@ -330,7 +330,7 @@ class XMLFile
     function XMLFile($version = "1.0", $encoding = "UTF-8")
     {
 		$this->version  = $version;
-		$this->encoding = $encoding;	
+		$this->encoding = $encoding;
         $this->init();
     }
 

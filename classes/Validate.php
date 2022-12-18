@@ -5,12 +5,12 @@
  * oleh Erick Lazuardi
  * date 7/10/2005 2:04PM
  */
- 
+
 class Validate
-{  
+{
 	var $regval = array();
 	var $listError = array();
-	
+
 	/**
 	 * function registerValue
 	 * @param array $val adalah array yang berformat sbb :
@@ -23,7 +23,7 @@ class Validate
 			return;
 		$this->regval[] = $val;
 	}
-	
+
 
 	/**
 	 * function processValidate
@@ -41,13 +41,13 @@ class Validate
 					$this->listError[] = $list['error'];
 			}
 		}
-		
+
 		if(count($this->listError))
 			return false;
 		else
 			return true;
 	}
-		
+
 	/**
 	 * function showError
 	 * @param NULL
@@ -66,7 +66,7 @@ class Validate
 		else
 			return $str;
 	}
-	
+
 	/**
 	 * function required
 	 * @param string $text adalah string yang akan di cek
@@ -79,7 +79,7 @@ class Validate
 		else
 			return true;
 	}
-	
+
 	/**
 	 * function maxlength
 	 * @param string $text adalah string yang akan di cek
@@ -92,7 +92,7 @@ class Validate
 		else
 			return true;
 	}
-	
+
 	/**
 	 * function minlength
 	 * @param string $text adalah string yang akan di cek
@@ -105,7 +105,7 @@ class Validate
 		else
 			return true;
 	}
-	
+
 	/**
 	 * function rangelength
 	 * @param string $text adalah string yang akan di cek
@@ -120,13 +120,13 @@ class Validate
 			$low = $opt[0];
 			$high = $opt[1];
 		}
-		
+
 		if((strlen($text) >= $low) and (strlen($text) <= $high))
 			return true;
 		else
 			return "panjang karakter harus diantara $low dan $high ";
 	}
-	
+
 	/**
 	 * function regex
 	 * @param string $text adalah string yang akan di cek
@@ -140,8 +140,8 @@ class Validate
                 return false;
             }
         }
-      
-        
+
+
         /**
 	 * function email
 	 * @param string $text adalah string yang akan di cek
@@ -153,7 +153,7 @@ class Validate
             else
             	return "format email tidak valid";
         }
-	
+
 	/**
 	 * function lettersonly
 	 * @param string $text adalah string yang akan di cek
@@ -169,7 +169,7 @@ class Validate
             else
             	return true;
         }
-        
+
         /**
 	 * function character
 	 * @param string $text adalah string yang akan di cek
@@ -182,7 +182,7 @@ class Validate
         	else
         		return "harus berupa karakter";
         }
-        
+
         /**
 	 * function equal
 	 * @param string $first adalah string pertama
@@ -196,7 +196,7 @@ class Validate
         	else
         		return "$first tidak sama dengan param";
         }
-        
+
         /**
 	 * function numeric
 	 * @param string $text adalah string yang akan di cek
@@ -208,7 +208,7 @@ class Validate
             else
             	return "harus numeric";
         }
-        
+
         /**
 	 * function nopunctuation
 	 * @param string $text adalah string yang akan di cek
@@ -220,7 +220,7 @@ class Validate
             else
             	return "tidak boleh mengandung karakter pemisah";
         }
-        
+
         /**
 	 * function digit
 	 * @param string $text adalah string yang akan di cek
@@ -233,7 +233,7 @@ class Validate
         	else
         		return "harus berupa digit, misal : 2";
         }
-        
+
         /**
 	 * function extension
 	 * @param string $text adalah string yang akan di cek
@@ -246,7 +246,7 @@ class Validate
             ereg( ".*\.([a-zA-Z0-9]{0,5})$", $val['name'], $regs );
             return in_array( $regs[1], $opts );
         }
-        
+
         function minchoice($val,$num)
         {
         	if(!is_array($val))
@@ -256,7 +256,7 @@ class Validate
         	else
         		return true;
         }
-        
+
         function maxchoice($val,$num)
         {
         	if(!is_array($val))
@@ -266,21 +266,21 @@ class Validate
         	else
         		return true;
         }
-        
+
         //function checkWord($text,$num = 35){
         function checkWord($text,$num){
           $text = explode(" ",$text);
-          $limit = $num;  
+          $limit = $num;
           foreach($text as $word){
-	        $numLetter = strlen($word);     
+	        $numLetter = strlen($word);
 
    	        if($numLetter >= $limit){
-  	           return "terdapat kata yang terlalu panjang";     
+  	           return "terdapat kata yang terlalu panjang";
             }
           }
           return true;
         }
-        
+
         function cekNama($string){
          if(ereg("admin",$string)){
           	return "Nama admin tidak boleh digunakan";
@@ -298,10 +298,10 @@ class Validate
           return true;
         	}
         }
-        
-        
+
+
         function isUrl($string){
-        	
+
            // if(ereg("^http://([a-z0-9]+\.)+[a-z]{2,5}$",$string)){
            if(ereg("^http://([a-zA-Z0-9_-]+\.)+[a-z~/]{2,25}$",$string)){
               return true;
@@ -309,7 +309,7 @@ class Validate
               return "format url tidak valid, ex : http://riset.sytes.net";
             }
         }
-        
+
 }
 //end class
 /*

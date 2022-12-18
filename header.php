@@ -36,7 +36,7 @@
 							<td><img src="pics/forum.png" alt="Forum" />&nbsp;<a href="http://anime.ee.itb.ac.id/forum">Forum</a>&nbsp;|&nbsp;</td>
 							<td><img src="pics/contact.png" alt="Contact" />&nbsp;<a href="index.php?m=contact">Contact Us</a></td>
 						</tr>
-					</table>						
+					</table>
 				</td>
 			</tr>
 		</table>

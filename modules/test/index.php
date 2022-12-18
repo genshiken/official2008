@@ -17,18 +17,18 @@ for ($i=1; $i<=7; $i++)
     if ($i != 2) {
         if ($i ==7) {
 			$hdt[$i]=disk_total_space('/home');
-			$hdt[$i]=hit($hdt[$i],$i,0);			
+			$hdt[$i]=hit($hdt[$i],$i,0);
 			$hdf[$i]=disk_free_space('/home');
 			$hdf[$i]=hit($hdf[$i],$i,1);
-			?> hd-music = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br /> 
-<?
+			?> hd-music = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br />
+<?php
 			} else {
 			$hdt[$i]=disk_total_space('/home/ftp/hd'.$i);
 			$hdt[$i]=hit($hdt[$i],$i,0);
 			$hdf[$i]=disk_free_space('/home/ftp/hd'.$i);
 			$hdf[$i]=hit($hdf[$i],$i,1);
-			?> hd<?=$i?> = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br /> 
-<?
+			?> hd<?=$i?> = <?=$hdt[$i] . ' ' . $size[$i][0] ?> total, <?=$hdf[$i] . ' ' . $size[$i][1] ?> free <br />
+<?php
 			}
 	}
 }

@@ -1,10 +1,10 @@
 <table style="font-family:verdana; font-size:10pt;">
 	<tr>
-		<td width="50px"><? echo $drive; ?></td>
+		<td width="50px"><?php echo $drive; ?></td>
 		<td>&raquo;</td>
-		<td width="55px" align="right"><? echo to_readble_size($freespace); ?></td>
+		<td width="55px" align="right"><?php echo to_readble_size($freespace); ?></td>
 		<td width="20px" align="right">
-			<? 
+			<?php
 				if($freespace > 1099511627776)
 					{
 					$suffix = 'TB';
@@ -25,13 +25,13 @@
 					{
 					$suffix = 'B';
 				};
-				echo $suffix; 
+				echo $suffix;
 			?>
 		</td>
 		<td>of</td>
-		<td width="55px" align="right"><? echo to_readble_size($total_space); ?></td>
+		<td width="55px" align="right"><?php echo to_readble_size($total_space); ?></td>
 		<td width="20px" align="right">
-			<? 
+			<?php
 				if($total_space > 1099511627776)
 					{
 					$suffix = 'TB';
@@ -52,15 +52,15 @@
 					{
 					$suffix = 'B';
 					};
-				echo $suffix; 
+				echo $suffix;
 			?>
 		</td>
 		<td><strong>[</td>
-		<td width="115px" align="right"><? echo $percentage_free.' % <strong>] Free' ?></td>
+		<td width="115px" align="right"><?php echo $percentage_free.' % <strong>] Free' ?></td>
 		<td>&hArr;</td>
-		<td width="55px" align="right"><? echo to_readble_size($used_space); ?></td>
+		<td width="55px" align="right"><?php echo to_readble_size($used_space); ?></td>
 		<td width="20px" align="right">
-			<? 
+			<?php
 				if($used_space > 1099511627776)
 					{
 					$suffix = 'TB';
@@ -81,10 +81,10 @@
 					{
 					$suffix = 'B';
 					};
-				echo $suffix; 
+				echo $suffix;
 			?>
 		</td>
 		<td ><strong>[</td>
-		<td width="115px" align="right"><? echo $percentage_used.' % <strong>] Used' ?></td>	          			
+		<td width="115px" align="right"><?php echo $percentage_used.' % <strong>] Used' ?></td>
 	</tr>
 </table>
