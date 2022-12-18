@@ -1,0 +1,59 @@
+<?php
+
+include_once "classes/class.Util.php";
+include_once "classes/File.php";
+include_once "classes/FormElement.php";
+include_once "classes/FormGroup.php";
+
+include_once "classes/Global.php";
+include_once "classes/GridAdodb.php";
+include_once "classes/Htmlarea.php";
+
+include_once "classes/Paging.php";
+include_once "classes/QueryString.php";
+
+include_once "classes/SessionsFile.php";
+include_once "classes/UploadFile.php";
+include_once "classes/Validate.php";
+
+/*
+Buat dulu secara manual:
+mysql database	: official
+mysql user		: official
+mysql password	: yamayurikai
+*/
+
+//config database
+$dbConfig["host"]     = "localhost";
+$dbConfig["db"]       = "official";
+$dbConfig["user"]     = "official";
+$dbConfig["password"] = "password";
+$dbConfig["port"]     = "3306";
+$dbPrefix = "dpg";
+
+$username = "admin";
+$password = "admin";
+
+$dbhost = $dbConfig["host"];
+$dbuser = $dbConfig["user"];
+$dbpass = $dbConfig["password"];
+$dbname = $dbConfig["db"];
+
+$user = $username;
+$pass = $password;
+
+// paging
+$config['page'] = 2;
+
+// instance db connection
+$adoObj = newAdoConnection('mysqli');
+//$adoObj->debug = true;
+$adoObj->Connect($dbConfig["host"],$dbConfig["user"],$dbConfig["password"],$dbConfig["db"]);
+
+// Directory
+$image_upload_dir	= "image/";
+$photo_officials	= "photo_officials/";
+$image_gallery		= "gallery/";
+$image_projects_dir	= "image_trailer/";
+
+?>
