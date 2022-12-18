@@ -49,7 +49,7 @@ class FormElement
 	  * @return void
 	  */
 
-	function FormElement()
+	public function __construct()
 	{
 		$this->setAttributes(array('class'=>$this->type));
 	}

@@ -55,7 +55,7 @@ class File
 	 * @param string $filename string nama file
 	 * @return NULL
 	 */
-	function File($filename="")
+	public function __construct($filename="")
 	{
 		if(!empty($filename)){
 

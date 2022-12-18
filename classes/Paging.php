@@ -120,7 +120,7 @@ class Paging1
 	  * @return void
 	  */
 
-	function Paging1($totalRec,$recPerPage)
+	public function __construct($totalRec,$recPerPage)
 	{
 		if(empty($totalRec))
 			$this->errMsg[] = "Total record cannot be null";

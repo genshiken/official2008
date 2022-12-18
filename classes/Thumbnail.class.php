@@ -173,7 +173,7 @@ class Thumbnail {
     *@param string filename of the source image file
     *@return boolean
     **/
-	function Thumbnail($imgfile) 	{
+	public function __construct($imgfile) 	{
     	$img_info =  getimagesize( $imgfile );
         //detect image format
         switch( $img_info[2] ){

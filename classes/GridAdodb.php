@@ -102,7 +102,7 @@ class GridAdodb
 	  * @return void
 	  */
 
-	function GridAdodb(&$adoObj)
+	public function __construct($adoObj)
 	{
 
 		$this->adoObj = $adoObj;

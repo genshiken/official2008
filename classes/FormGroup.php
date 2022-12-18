@@ -63,7 +63,7 @@ class formGroup
           * @return void
           */
 
-        function formGroup($action,$method="post",$enctype="",$target="")
+        public function __construct($action,$method="post",$enctype="",$target="")
         {
                 $this->action = $action;
                 $this->method = $method;

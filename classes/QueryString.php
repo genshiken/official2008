@@ -33,7 +33,7 @@ class QueryString
 	  * @return void
 	  */
 
-	function QueryString($q=null)
+	public function __construct($q=null)
 	{
 		if($q == null){
 			$q = $_SERVER['QUERY_STRING'];

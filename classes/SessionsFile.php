@@ -38,7 +38,7 @@ class Sessions
 	 *
 	 * @param int [$lifetime] masa aktif session
 	 */
-	function sessions(&$dbObj,$lifetime=10800)
+	public function __construct($dbObj,$lifetime=10800)
 	{
 		// start session
 		session_start();

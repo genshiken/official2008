@@ -25,7 +25,7 @@ class HtmlArea{
 	 * @param string $edUrl, editor url
 	 * @param string $edLang, editor language
 	 */
-	function HtmlArea($edUrl="htmlarea/",$edLang="en")
+	public function __construct($edUrl="htmlarea/",$edLang="en")
 	{
 		$this->editorUrl = $edUrl;
 		$this->editorLang = $edLang;
