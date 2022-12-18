@@ -467,7 +467,7 @@ class formGroup
 		                                            }else{
 		                                                $param = array($item->getValue());
 	                                                }
-	                                                $string = call_user_method_array($rul['rule'],&$this->objValidator,$param);
+	                                                $string = call_user_method_array($rul['rule'],$this->objValidator,$param);
 	                                          		if($string == 1)
 	                                          			continue;
 	                                                array_unshift($err,$string);

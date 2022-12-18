@@ -3,7 +3,7 @@
 class Globals
 {
 
-  function getVar($var) {
+  public static function getVar($var) {
      if (is_array($_GET)) {
          if (isset($_GET[$var])) {
              $result = $_GET[$var];
@@ -39,7 +39,7 @@ class Globals
      return $result;
   }
 
-  function redirect($url)
+  public static function redirect($url)
   {
   	if(!headers_sent()){
   		header("Location: $url");

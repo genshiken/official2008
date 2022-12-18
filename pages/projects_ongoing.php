@@ -26,7 +26,7 @@ function projects()
 	image_ongoing_projects	TEXT	NOT NULL,
 	isi_ongoing_projects	LONGTEXT	NOT NULL
   )";
-  $buat_table2 = mysql_db_query($dbname,$table1);
+  $buat_table2 = $adoObj->execute($table1);
 
   $sql = "select count(*) as total from projects_ongoing";
   $total = $adoObj->GetOne($sql);

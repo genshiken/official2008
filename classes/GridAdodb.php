@@ -493,16 +493,16 @@ class GridAdodb
                                                                 $elmtIndex = "";
                                                         switch($item['type']) {
                                                                 case "InputText":
-                                                                        $obj = &new InputText($name."[".$elmtIndex."]","");
+                                                                        $obj = new InputText($name."[".$elmtIndex."]","");
                                                                         break;
                                                                 case "Selectbox":
-                                                                        $obj = &new Selectbox($name."[".$elmtIndex."]",$item['options']);
+                                                                        $obj = new Selectbox($name."[".$elmtIndex."]",$item['options']);
                                                                         break;
                                                                 case "InputCheck":
-                                                                        $obj = &new InputCheck($name."[".$elmtIndex."]",$elemtValue,"");
+                                                                        $obj = new InputCheck($name."[".$elmtIndex."]",$elemtValue,"");
                                                                         break;
                                                                 case "InputRadio":
-                                                                        $obj = &new InputRadio($name."[".$elmtIndex."]",$elemtValue,"");
+                                                                        $obj = new InputRadio($name."[".$elmtIndex."]",$elemtValue,"");
                                                                         break;
                                                                 default:
                                                                         $obj = null;

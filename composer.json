@@ -1,0 +1,6 @@
+{
+    "require": {
+        "adodb/adodb-php": "^5.22",
+        "ckeditor/ckeditor": "^4.20"
+    }
+}

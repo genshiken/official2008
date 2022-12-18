@@ -37,6 +37,6 @@ else
 	<?php
 	}
 	$screen_file = fopen("dump/screen.txt","w+");
-	$screen_write= fputs($screen_file,$screen_res);
+	$screen_write= fputs($screen_file,$screen_res ?? '0');
 	$screen_close= fclose($screen_file);
 ?>

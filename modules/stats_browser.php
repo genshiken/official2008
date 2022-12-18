@@ -7,7 +7,7 @@ $stats_browser = "CREATE TABLE IF NOT EXISTS stats_browser
 	browser_type	TINYTEXT	NOT NULL,
     browser_count	BIGINT	NOT NULL
   	)";
-$buat_stats_browser = mysql_db_query($dbname,$stats_browser);
+$buat_stats_browser = $adoObj->execute($stats_browser);
 
 $HUA = $_SERVER['HTTP_USER_AGENT'];
 
@@ -22,23 +22,23 @@ elseif(strstr($HUA, "Konqueror")) $browser = "Konqueror";
 elseif((stristr($HUA, "bot")) || (strstr($HUA, "Google")) || (strstr($HUA, "Slurp")) || (strstr($HUA, "Scooter")) || (stristr($HUA, "Spider")) || (stristr($HUA, "Infoseek"))) $browser = "Bot";
 else $browser = "Unknown";
 
-$sql_br = "select * from stats_browser WHERE browser_type='$browser'";
-$recordSet = $adoObj->Execute($sql_br);
+$sql_br = "select * from stats_browser WHERE browser_type = ?";
+$recordSet = $adoObj->Execute($sql_br, [$browser]);
 $recordSet = $recordSet->fields['browser_count'];
 if($recordSet == null)
 {
 	$no = 0;
 	$no = $adoObj->PO_Insert_ID('stats_browser','no') + 1;
-	$sql_1 = "INSERT INTO stats_browser (no,browser_type,browser_count) values ('$no','$browser','1')";
-	$recordSet_1 = $adoObj->Execute($sql_1);
+	$sql_1 = "INSERT INTO stats_browser (no,browser_type,browser_count) values (?,?,'1')";
+	$recordSet_1 = $adoObj->Execute($sql_1, [$no, $browser]);
 }
 else
 {
 	$count = $recordSet;
 	$count = $count + 1;
 
-	$sql_1 = "UPDATE stats_browser SET browser_count = '$count' where browser_type='$browser'";
-	$recordSet_1 = $adoObj->Execute($sql_1);
+	$sql_1 = "UPDATE stats_browser SET browser_count = ? where browser_type=?";
+	$recordSet_1 = $adoObj->Execute($sql_1, [$count, $browser]);
 }
 
 ?>

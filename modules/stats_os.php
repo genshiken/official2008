@@ -7,7 +7,7 @@ $stats_os = "CREATE TABLE IF NOT EXISTS stats_os
 	os_type	TINYTEXT	NOT NULL,
     os_count	BIGINT	NOT NULL
   	)";
-$buat_stats_os = mysql_db_query($dbname,$stats_os);
+$buat_stats_os = $adoObj->execute($stats_os);
 
 $HUA = $_SERVER['HTTP_USER_AGENT'];
 
@@ -48,15 +48,15 @@ elseif(strstr($HUA, "AmigaOS")) $os = "AmigaOS";
 
 else {$os = "Other";}
 
-$sql_os = "select * from stats_os WHERE os_type='$os'";
-$recordSet1 = $adoObj->Execute($sql_os);
+$sql_os = "select * from stats_os WHERE os_type=?";
+$recordSet1 = $adoObj->Execute($sql_os, [$os]);
 $recordSet1 = $recordSet1->fields['os_count'];
 if($recordSet1 == null)
 {
 	$no = 0;
 	$no = $adoObj->PO_Insert_ID('stats_os','no') + 1;
-	$sql_2 = "INSERT INTO stats_os (no,os_type,os_count) values ('$no','$os','1')";
-	$recordSet_2 = $adoObj->Execute($sql_2);
+	$sql_2 = "INSERT INTO stats_os (no,os_type,os_count) values (?,?,'1')";
+	$recordSet_2 = $adoObj->Execute($sql_2, $no, $os);
 }
 else
 {

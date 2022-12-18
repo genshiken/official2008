@@ -37,7 +37,7 @@ class Validate
 			return true;
 		foreach($this->regval as $list){
 			if(method_exists($this,$list['function'])){
-				if(!call_user_method_array($list['function'],&$this,$list['value']))
+				if(!call_user_method_array($list['function'],$this,$list['value']))
 					$this->listError[] = $list['error'];
 			}
 		}
