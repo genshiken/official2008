@@ -1,6 +1,7 @@
 <?php
 
 use App\Globals;
+use App\Paging;
 
 #=====================================================#
 #												  	  #
@@ -147,7 +148,7 @@ function projects()
 	?>
 	<div class="pageswitch">
 	<?php
-		$page = new Paging1($total,$limit);
+		$page = new Paging($total,$limit);
 		$page->display();
 		echo "<p>&nbsp;<br /></p>";
   }

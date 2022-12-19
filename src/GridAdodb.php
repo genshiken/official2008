@@ -278,7 +278,7 @@ class GridAdodb
 
 		/** object paging */
 
-		$pagingObj = new Paging1($total,$this->recordPerPage);
+		$pagingObj = new Paging($total,$this->recordPerPage);
 
 		$pagingObj->setLinkBeforeAfterCur(5);
 

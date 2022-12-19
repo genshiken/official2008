@@ -23,7 +23,7 @@ namespace App;
   * used for split page
   */
 
-class Paging1
+class Paging
 {
 	/** @private string $curpage
 	  * halaman sekarang

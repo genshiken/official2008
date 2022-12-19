@@ -1,7 +1,7 @@
 <?php
 
 use App\Globals;
-use App\Paging1;
+use App\Paging;
 use App\Util;
 
 #=====================================================#
@@ -180,7 +180,7 @@ function TokusatsuReviews()
 	?>
 	<div class="pageswitch">
 	<?php
-		$page = new Paging1($total,$limit);
+		$page = new Paging($total,$limit);
 		$page->display();
 		echo "<p>&nbsp;<br /></p>";
   }
