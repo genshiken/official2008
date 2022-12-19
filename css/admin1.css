@@ -2,12 +2,8 @@ BODY{
 color:black;
 font-family:Verdana;
 font-size:10pt;
-margin-bottom:10px;
-margin-left:0;
-margin-right:0;
-margin-top:10px;
-padding-bottom:0;
-padding-left:0;
+margin: 10px 0;
+padding: 0;
 scrollbar:always;
 background:AliceBlue;
 }
@@ -48,32 +44,25 @@ margin-top:30px;
 margin-right:5px;
 }
 
-Div.official{
-height:130px; 
-background:indigo;
-border-top:1px solid white;
-padding-top:10px;
-padding-left:5px;
-padding-right:10px;
-padding-bottom:5px;
+.official{
+  background:indigo;
+  border-top:1px solid white;
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  --padding: 12px;
 }
 
-DIV.logo{
- padding-top:5px;
- width:47%;
- text-align:center;
- float:left;
- color:wheat;
- border-right:1px solid white;
+.logo {
+ text-align: center;
+ color: wheat;
+ border-right: 1px solid white;
+ padding: var(--padding);
 }
 
-Div.address{
- width:52%;
- color:WhiteSmoke;
- margin-left:0px;
- float:right;
- text-align:justify;
- padding-left:5px;
+.address {
+ color: WhiteSmoke;
+ text-align: justify;
+ padding: var(--padding);
 }
 
 DIV.menubar{
