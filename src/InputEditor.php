@@ -15,7 +15,6 @@ class InputEditor extends FormElement
 	var $height;
 	var $name;
 	var $value;
-	var $style="office2003";
 	var $path;
 
 
@@ -77,15 +76,15 @@ class InputEditor extends FormElement
 
 	function toString()
 	{
-        $editor = new FCKeditor($this->name);
-        $editor->BasePath = $this->path;
-        $editor->Value = $this->value;
-        $editor->Width = "100%";
-        $editor->Height = $this->height;
-
-
-        $editor->Config['SkinPath'] = $this->path."editor/skins/".$this->style."/";
-
-        return $editor->CreateHtml();
+        return tag('textarea', [
+            'height' => $this->height,
+            'id' => $this->name,
+            'name' => $this->name,
+            'width' => '100%',
+        ], e($this->value))
+            .tag('script', ['src' => 'vendor/ckeditor/ckeditor/ckeditor.js'])
+            .tag('script', null, "
+                CKEDITOR.replace('{$this->name}')
+            ");
 	}
 }
