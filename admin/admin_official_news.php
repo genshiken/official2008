@@ -258,7 +258,7 @@ function EditOfficialNews()
 
   	$form->addHidden("id_official_news",e($id));
   	$loc =  "image";
-  	$info .= "<a href=".$loc."/".$row['image_official_news'].">";
+  	$info = "<a href=".$loc."/".$row['image_official_news'].">";
   	$info .= $row['image_official_news'];
  	$info .= "</a>&nbsp;";
 	$file_path = "image/".$row['image_official_news'];

@@ -54,6 +54,8 @@ class FormGroup
 
         var $err = array();
 
+        private string $separator = '';
+
         /**
           * constructor
           * @param string $action adalah url target
@@ -305,10 +307,10 @@ class FormGroup
                 }
         }
 
-        function addEditor($name,$value="",$height="600",$path="FCKeditor/",$style="")
+        function addEditor($name,$value="",$height="600")
         {
                 if(!array_key_exists($name,$this->tempElement)){
-                        $obj  = new InputEditor($name,$value,$width,$height,$path,$style);
+                        $obj  = new InputEditor($name, $value, $height);
 
                         $this->tempElement[$name] = $obj;
                 }else{
@@ -359,7 +361,7 @@ class FormGroup
 
         function submitted()
         {
-        	return $_POST['submitted'];
+        	return $_POST['submitted'] ?? null;
         }
 
         /**
@@ -443,6 +445,7 @@ class FormGroup
 
         function toString()
         {
+                $retVal = '';
                 /** cek apakah ada error sistem */
                 foreach($this->errMsg as $err)
                         $retVal .=  "<li>$err</li>";
@@ -456,7 +459,7 @@ class FormGroup
                 /** hidden fields */
                 if(count($this->hiddenfields)){
                 	foreach($this->hiddenfields as $key => $value)
-                		$retval .= "<input type=hidden name=\"$key\" value=\"$value\">\n";
+                		$retVal .= "<input type=hidden name=\"$key\" value=\"$value\">\n";
            		}
 
                 $counter = 1;

@@ -11,11 +11,9 @@ namespace App;
 class InputEditor extends FormElement
 {
 
-	var $width;
 	var $height;
 	var $name;
 	var $value;
-	var $path;
 
 
 	/**
@@ -27,14 +25,12 @@ class InputEditor extends FormElement
 	  * @return void
 	  */
 
-	public function __construct($name,$value="",$width="",$height="500",$path="FCKeditor/")
+	public function __construct($name,$value="",$height="500")
 	{
 		/** initialitation */
 		$this->name = $name;
 		$this->value = $value;
-		$this->width = $width;
 		$this->height = $height;
-		$this->path = $path;
 	}
 
 	/**

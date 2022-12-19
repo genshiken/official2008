@@ -20,7 +20,7 @@ class InputFile extends FormElement
 	  * @return void
 	  */
 
-	public function __construct($name,$value,$attrib='')
+	public function __construct($name,$value,$attrib='', $label = null)
 	{
 		$this->setType('file');
 
