@@ -1,5 +1,6 @@
 <?php
 
+use App\FormGroup;
 use App\Globals;
 use App\GridAdodb;
 use App\Thumbnail;
