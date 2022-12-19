@@ -144,18 +144,19 @@ function SearchJMusicReviews()
 	</div>
 	<div class="newslist">
 		<?php
-			$key = Globals::getVar('char');
-			$found=0;
-			if($key == "else")
+			$char = $_REQUEST['char'] ?? 'else';
+			$found = 0;
+			if($char === "else")
 			{
-				$key = "[^abcdefghijklmnopqrstuvwxyz]";
-				$sql = "select * from reviews_jmusic WHERE artist_jmusicreviews REGEXP CONVERT( _utf8 '^$key' USING latin1 ) COLLATE latin1_general_ci ORDER BY artist_jmusicreviews,album_jmusicreviews,judul_jmusicreviews";
+				$sql = "select * from reviews_jmusic WHERE artist_jmusicreviews REGEXP ? ORDER BY artist_jmusicreviews,album_jmusicreviews,judul_jmusicreviews";
+				$bindValues = ["^[^abcdefghijklmnopqrstuvwxyz]"];
 			}
 			else
 			{
-				$sql = "select * from reviews_jmusic WHERE artist_jmusicreviews REGEXP CONVERT( _utf8 '^$key' USING latin1 ) COLLATE latin1_general_ci ORDER BY artist_jmusicreviews,album_jmusicreviews,judul_jmusicreviews";
+				$sql = "select * from reviews_jmusic WHERE artist_jmusicreviews LIKE ? ORDER BY artist_jmusicreviews,album_jmusicreviews,judul_jmusicreviews";
+				$bindValues = [escape_sql_like($char).'%'];
 	        }
-			$recordSet = $adoObj->Execute($sql);
+			$recordSet = $adoObj->Execute($sql, $bindValues);
 
 			/** iterasi*/
 	        if($recordSet !=null)

@@ -7,6 +7,14 @@ function e(string $string): string
     return htmlspecialchars($string, ENT_QUOTES, "UTF-8");
 }
 
+function escape_sql_like(string $string): string
+{
+    return strtr($string, [
+        '%' => '\%',
+        '_' => '\_',
+    ]);
+}
+
 function tag(string $tag, ?array $attributes, ?string $content = null): string
 {
     $attributesString = '';
