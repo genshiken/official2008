@@ -267,6 +267,7 @@ class GridAdodb
 
 	function displayPaging()
 	{
+		$str = '';
 		/** set query buat diambil total recordnya */
 
 		$result = $this->adoObj->Execute($this->SQLQuery);
@@ -308,6 +309,7 @@ class GridAdodb
 	{
 		/** total result */
 
+		$str = '';
 		$rs = $this->adoObj->Execute($this->SQLQuery);
 		$recordCount  = $rs->RecordCount();
 		$fieldCount = $rs->FieldCount();
