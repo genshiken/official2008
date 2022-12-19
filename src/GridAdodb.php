@@ -109,9 +109,7 @@ class GridAdodb
 
 		/** untuk query string */
 
-		if(class_exists("QueryString")){
-			$this->QueryStringObj = new QueryString;
-		}
+        $this->QueryStringObj = new QueryString;
 
 		/** untuk curpage */
 
