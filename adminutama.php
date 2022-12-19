@@ -8,11 +8,10 @@ include 'authme.php';
 		<link rel="stylesheet" href="css/admin1.css" type="text/css" />
 		<meta name="Author" content="Amateurasu, Benny Elian" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<!--<SCRIPT language="javascript" src="javacripts/blockerror.js"></SCRIPT>-->
 		<script type="text/javascript" src="javacripts/daycount1.js"></script>
 	</head>
 
-	<body onload="goforit();blockError();">
+	<body onload="goforit();">
    		<?php include "modules/ScreenResolution.php"; ?>
 		<!-- Start of Header -->
 		<?PHP include_once "admin/header.php"; ?>

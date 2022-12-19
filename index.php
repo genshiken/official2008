@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="javacripts/DropDown.js"></script>
 	</head>
 
-	<body onload="goforit();blockError();">
+	<body onload="goforit();">
 		<?php include "modules/ScreenResolution.php"; ?>
 		<?php include "modules/stats_browser.php"; ?>
 		<?php include "modules/stats_os.php"; ?>
