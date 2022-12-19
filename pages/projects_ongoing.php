@@ -35,11 +35,11 @@ function projects()
   $sql = "select count(*) as total from projects_ongoing";
   $total = $adoObj->GetOne($sql);
 
-  $page = (int)Globals::getVar('page') == 0 ? 1 : (int)Globals::getVar('page');
+  $page = max(get_param_int($_REQUEST['page'] ?? null) ?? 1, 1);
   $limit = 5;
   $offset = ($page - 1) * $limit;
-  $sql = "SELECT * FROM projects_ongoing ORDER BY id_ongoing_projects DESC LIMIT $offset,$limit";
-  $recordSet = $adoObj->Execute($sql);
+  $sql = "SELECT * FROM projects_ongoing ORDER BY id_ongoing_projects DESC LIMIT ? OFFSET ?";
+  $recordSet = $adoObj->Execute($sql, [$limit, $offset]);
 
   if($recordSet !=null){
 

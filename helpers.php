@@ -15,6 +15,15 @@ function escape_sql_like(string $string): string
     ]);
 }
 
+function get_param_int(?string $string): ?int
+{
+    if (is_scalar($string)) {
+        return (int) $string;
+    }
+
+    return null;
+}
+
 function tag(string $tag, ?array $attributes, ?string $content = null): string
 {
     $attributesString = '';
