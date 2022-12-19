@@ -3,6 +3,7 @@
 use App\FormGroup;
 use App\Globals;
 use App\GridAdodb;
+use App\UploadFile;
 use App\Util;
 
 $allowedExtension = array('gif','GIF','jpg','JPG','png','PNG');
@@ -242,20 +243,20 @@ function EditOfficialNews()
 		global $adoObj,$destDir2, $allowedExtension, $no;
 
 
-	$no = Globals::getVar('id_official_news');
+	$id = $_REQUEST['id_official_news'] ?? '0';
 
-	$sql = "select * from official_news where id_official_news='$no'";
-	$row = $adoObj->GetRow($sql);
+	$sql = "select * from official_news where id_official_news=?";
+	$row = $adoObj->GetRow($sql, [$id]);
 
-	$form = new FormGroup("adminutama.php?m=EditOfficialNews&id_official_news=$no","post");
+	$form = new FormGroup('adminutama.php?m=EditOfficialNews&id_official_news='.e($id),"post");
 
 	$form->setTitle("<div class='title'>Form Edit Official News</div>");
 
-	$form->addHidden("id_official_news",$no);
+	$form->addHidden("id_official_news",e($id));
 	$form->addText("judul_official_news", $row['judul_official_news'], array("size"=>80));
 	$form->groupAsRow("<div class='leftbox'>Judul Official News</div>");
 
-  	$form->addHidden("id_official_news",$no);
+  	$form->addHidden("id_official_news",e($id));
   	$loc =  "image";
   	$info .= "<a href=".$loc."/".$row['image_official_news'].">";
   	$info .= $row['image_official_news'];
@@ -302,9 +303,8 @@ function EditOfficialNews()
 
 	if($form->submitted() && $form->validateElement())
 		{
-	   	$no = Globals::getVar("id_official_news");
-		$sql = "select image_official_news from official_news where id_official_news='$no'";
-		$row = $adoObj->GetRow($sql);
+		$sql = "select image_official_news from official_news where id_official_news=?";
+		$row = $adoObj->GetRow($sql, [$id]);
 		$photo = $row['image_official_news'];
 
     	$upl = new UploadFile('image_official_news');
@@ -328,16 +328,18 @@ function EditOfficialNews()
      	$description = $_POST['isi_official_news'];
      	if(strlen($nama_file) < 1)
 			{
-	    	$sql = "UPDATE official_news SET judul_official_news='$title',isi_official_news='$description' where id_official_news='$no'";
+	    	$sql = "UPDATE official_news SET judul_official_news=?,isi_official_news=? where id_official_news=?";
+	    	$bindValues = [$title, $description, $id];
       		}
       	else
       		{
 			$pics = "image/".$photo;
 			unlink($pics);
-      		$sql = "UPDATE official_news SET judul_official_news='$title',image_official_news='$nama_file',isi_official_news='$description' where id_official_news='$no'";
+      		$sql = "UPDATE official_news SET judul_official_news=?,image_official_news=?,isi_official_news=? where id_official_news=?";
+	    	$bindValues = [$title, $nama_file, $description, $id];
       		}
 
-      	$res = $adoObj->Execute($sql);
+      	$res = $adoObj->Execute($sql, $bindValues);
 
       	if($res == false)
 	  		{

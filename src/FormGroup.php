@@ -403,7 +403,8 @@ class FormGroup
 		                                            }else{
 		                                                $param = array($item->getValue());
 	                                                }
-	                                                $string = call_user_method_array($rul['rule'],$this->objValidator,$param);
+	                                                $ruleMethod = $rul['rule'];
+	                                                $string = $this->objValidator->$ruleMethod(...$param);
 	                                          		if($string == 1)
 	                                          			continue;
 	                                                array_unshift($err,$string);

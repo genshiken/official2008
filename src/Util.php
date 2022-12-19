@@ -47,7 +47,7 @@ class Util {
      	* @param integer $url Length of digit number after adding leading zero
      	* @return Digit number with leading zero
      	*/
-  	function alertRedirect($msg, $url) {
+  	public static function alertRedirect($msg, $url) {
 	     echo "
 	     <script language=Javascript>
 	     alert('$msg');
