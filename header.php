@@ -4,8 +4,8 @@
     		<script type="text/javascript" src="javacripts/daycount2.js"></script>
     	</div>
     	<div class="date">
-    		<script type="text/javascript" src="javacripts/date.js"></script>
-			<div id="clock"></div>
+            <script src="javacripts/date.js"></script>
+            <div id="clock"></div>
         </div>
     </div>
     <div class="official">

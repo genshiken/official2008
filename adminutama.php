@@ -11,7 +11,7 @@ include 'authme.php';
 		<script type="text/javascript" src="javacripts/daycount1.js"></script>
 	</head>
 
-	<body onload="goforit();">
+	<body>
    		<?php include "modules/ScreenResolution.php"; ?>
 		<!-- Start of Header -->
 		<?PHP include_once "admin/header.php"; ?>
