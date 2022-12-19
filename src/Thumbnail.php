@@ -62,6 +62,7 @@ echo ($thumb->error_msg);                   // print Error Mensage
 //----------------------------------------------
 ################################################  */
 
+namespace App;
 
 class Thumbnail {
     /**

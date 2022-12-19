@@ -1,5 +1,11 @@
 <?php
 
+use App\Globals;
+use App\GridAdodb;
+use App\Thumbnail;
+use App\UploadFile;
+use App\Util;
+
 /** Modul Admin For Galeria */
 /** date : 03/12/2006 8:27PM *
 /** author: Andhy Sukma Perdana *
@@ -48,7 +54,6 @@ function AddGallery(){
       		echo $upl->getError();
       	}
       	$adoObj->StartTrans();
-      	include "classes/Thumbnail.class.php";
      	$fot = "gallery/".$nama;
      	$thumb=new Thumbnail($fot);
      	$thumb->size_width(360);
@@ -357,7 +362,6 @@ function EditGallery()
 		}
       	else
       	{
-			include "classes/Thumbnail.class.php";
      		$fot = "gallery/".$nama;
      		$thumb=new Thumbnail($fot);
      		$thumb->size_width(360);

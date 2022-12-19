@@ -1,5 +1,9 @@
 <?php
 
+use App\FormGroup;
+use App\Globals;
+use App\Util;
+
 function EditOfficialProfile()
 {
 

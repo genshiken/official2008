@@ -1,5 +1,10 @@
 <?php
 
+use App\FormGroup;
+use App\Globals;
+use App\GridAdodb;
+use App\UploadFile;
+
 $allowedExtension = array('gif','GIF','jpg','JPG','png','PNG');
 $destDir2 = "image";
 function TambahTokusatsuReviews()

@@ -1,4 +1,7 @@
 <?php
+
+use App\Globals;
+
 #=====================================================#
 #												  	  #
 # Fungsi Menampilkan 5 buah Finished Projects Terbaru #

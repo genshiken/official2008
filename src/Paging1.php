@@ -16,6 +16,8 @@
 // +----------------------------------------------------------------------+
 //include "QueryString.php";
 
+namespace App;
+
 /**
   * class Paging
   * used for split page

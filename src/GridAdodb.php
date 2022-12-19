@@ -15,7 +15,7 @@
 // | Author: Erick Lazuardi  < erick@divkom.ee.itb.ac.id> 	          |
 // +----------------------------------------------------------------------+
 
-
+namespace App;
 
 /** Class Grid
   * membuat tampilan Grid table dari query result Mysql

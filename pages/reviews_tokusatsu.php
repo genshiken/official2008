@@ -1,4 +1,9 @@
 <?php
+
+use App\Globals;
+use App\Paging1;
+use App\Util;
+
 #=====================================================#
 #												  	  #
 # Fungsi Menampilkan 5 buah Tokusatsu Reviews Terbaru #

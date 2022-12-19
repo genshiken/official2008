@@ -16,6 +16,8 @@ CREATE TABLE `sessions` (
     `data` text NOT NULL) TYPE=MyISAM;
 */
 
+namespace App;
+
 class Sessions
 {
 	/**

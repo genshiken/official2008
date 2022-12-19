@@ -1,5 +1,6 @@
 <?php
 
+namespace App;
 
 /**
   * class InputReset
@@ -7,7 +8,7 @@
   *
   */
 
-class formGroup
+class FormGroup
 {
 		/** form title */
 
@@ -69,12 +70,7 @@ class formGroup
                 $this->method = $method;
                 $this->enctype = $enctype;
                 $this->target = $target;
-
-                if(class_exists("Validate")){
-                        $this->objValidator = new Validate;
-                }else{
-                        $retVal .=  "no validator found";
-                }
+                $this->objValidator = new Validate;
         }
 
         function setTitle($title)
@@ -92,16 +88,11 @@ class formGroup
           */
         function addText($name,$value,$attrib='')
         {
-                $classname = "InputText";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputText($name,$value,$attrib);
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputText($name,$value,$attrib);
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -117,16 +108,11 @@ class formGroup
           */
         function addPassword($name,$value,$attrib='')
         {
-                $classname = "InputPassword";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputPassword($name,$value,$attrib);
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputPassword($name,$value,$attrib);
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -140,21 +126,16 @@ class formGroup
 
         function addFile($name,$value,$attrib='',$size='')
         {
-                $classname = "InputFile";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputFile($name,$value,$attrib);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputFile($name,$value,$attrib);
 
-                                if(!empty($size)){
-                                        $obj->setSize($size);
-                                }
-
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
+                        if(!empty($size)){
+                                $obj->setSize($size);
                         }
+
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -169,16 +150,11 @@ class formGroup
 
         function addCheckbox($name,$value,$matchvalue,$attrib='',$label='')
         {
-                $classname = "InputCheck";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputCheck($name,$value,$matchvalue,$attrib,$label);
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputCheck($name,$value,$matchvalue,$attrib,$label);
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -193,16 +169,11 @@ class formGroup
 
         function addRadio($name,$value,$matchvalue,$attrib = '')
         {
-                $classname = "InputRadio";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputRadio($name,$value,$matchvalue,$attrib);
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputRadio($name,$value,$matchvalue,$attrib);
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -217,17 +188,12 @@ class formGroup
 
         function addSelect($name,$options,$value='',$attrib='')
         {
-                $classname = "Selectbox";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new Selectbox($name,$options,$value,$attrib);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new Selectbox($name,$options,$value,$attrib);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -242,17 +208,12 @@ class formGroup
 
         function addSelectOrder($name,$options,$value='',$attrib='')
         {
-                $classname = "SelectOrder";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new SelectOrder($name,$options,$value,$attrib);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new SelectOrder($name,$options,$value,$attrib);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -269,17 +230,12 @@ class formGroup
 
         function addTextarea($name,$value='',$attrib='')
         {
-                $classname = "Textarea";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new Textarea($name,$value,$attrib);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new Textarea($name,$value,$attrib);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -309,17 +265,12 @@ class formGroup
 
         function addSubmit($name,$value='submit',$attrib='')
         {
-                $classname = "InputSubmit";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputSubmit($name,$value,$attrib);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputSubmit($name,$value,$attrib);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
@@ -334,49 +285,34 @@ class formGroup
 
         function addReset($name,$value='reset',$attrib='')
         {
-                $classname = "InputReset";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputReset($name,$value,$attrib);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputReset($name,$value,$attrib);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
         function addDate($name,$value)
         {
-                $classname = "InputDate";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputDate($name,$value);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputDate($name,$value);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 
         function addEditor($name,$value="",$height="600",$path="FCKeditor/",$style="")
         {
-                $classname = "InputEditor";
-                if(class_exists($classname)){
-                        if(!array_key_exists($name,$this->tempElement)){
-                                $obj  = new InputEditor($name,$value,$width,$height,$path,$style);
+                if(!array_key_exists($name,$this->tempElement)){
+                        $obj  = new InputEditor($name,$value,$width,$height,$path,$style);
 
-                                $this->tempElement[$name] = $obj;
-                        }else{
-                                $this->errMsg[] = "element with name $name  exist";
-                        }
+                        $this->tempElement[$name] = $obj;
                 }else{
-                        $this->errMsg[] = "classname : $classname cannot loaded";
+                        $this->errMsg[] = "element with name $name  exist";
                 }
         }
 

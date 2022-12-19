@@ -6,7 +6,7 @@
  * nb : untuk menggunakan class ini harus ada folder htmlarea beserta isinya yang tersebut di editor url
  */
 
-
+namespace App;
 
 class HtmlArea{
 

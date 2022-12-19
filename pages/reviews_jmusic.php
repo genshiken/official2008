@@ -1,5 +1,8 @@
 <?php
 
+use App\Globals;
+use App\Paging1;
+
 function JMusicReviews()
 {
   include "conf.php";

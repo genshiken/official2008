@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class UploadFile extends File
 {
         /** nama variabel upload */

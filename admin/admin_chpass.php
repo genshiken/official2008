@@ -1,5 +1,8 @@
 <?php
 
+use App\FormGroup;
+use App\Util;
+
 function ChangePassword()
 {
   include "conf.php";

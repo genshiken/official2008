@@ -20,6 +20,8 @@
 //    Last updated         : October 25, 2005, 12:07 PM
 // //////////////////////////////////////////////////////////////////////////
 
+namespace App;
+
 /** This class contains some common utility functions needed by application
   * @author Lorensius W. L. T (lorenz@londatiga.net)
   * @version 1.0

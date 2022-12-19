@@ -16,6 +16,7 @@
 // | Author: Erick Lazuardi  < erick@divkom.ee.itb.ac.id> 	          |
 // +----------------------------------------------------------------------+
 
+namespace App;
 
 /** class QueryString
   * untuk memanipulasi query string

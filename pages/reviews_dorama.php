@@ -1,4 +1,8 @@
 <?php
+
+use App\Globals;
+use App\Paging1;
+
 #==================================================#
 #												   #
 # Fungsi Menampilkan 5 buah Dorama Reviews Terbaru #

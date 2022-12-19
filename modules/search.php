@@ -1,4 +1,8 @@
 <?php
+
+use App\FormGroup;
+use App\Globals;
+
 /** Modul for Search */
 /** date : 11/04/2006 8:27PM *
 /** author: Andhy Sukma Perdana *

@@ -6,6 +6,8 @@
  * date 7/10/2005 2:04PM
  */
 
+namespace App;
+
 class Validate
 {
 	var $regval = array();

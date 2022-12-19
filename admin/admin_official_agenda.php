@@ -1,5 +1,10 @@
 <?php
 
+use App\FormGroup;
+use App\Globals;
+use App\GridAdodb;
+use App\Util;
+
 function AddOfficialAgenda()
 {
 	include "conf.php";
