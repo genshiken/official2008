@@ -186,37 +186,41 @@ function SearchJMusicReviews()
 
 function ResultDetailedJMusicReviews()
 {
-  	include "conf.php";
-  	$no = Globals::getVar("id_jmusicreviews");
-  	$sql = "SELECT * FROM reviews_jmusic WHERE id_jmusicreviews='$no'";
-  	$recordSet = $adoObj->Execute($sql);
+    include "conf.php";
+    $id = $_REQUEST['id_jmusicreviews'] ?? null;
+    $sql = "SELECT * FROM reviews_jmusic WHERE id_jmusicreviews=?";
+    $recordSet = $adoObj->Execute($sql, [$id])->fetchRow();
 
-  	?>
-	<div class="newsbox">
-		<div class="newstitle">
-			<div class="info_left1"><?php echo "&raquo; Song Title "; ?></div>
-			<div class="info_right1"><?php echo ": ". $recordSet->fields['judul_jmusicreviews']; ?></div>
-			<div class="info_left1"><?php echo "&raquo; Artist "; ?></div>
-			<div class="info_right1"><?php echo ": ". $recordSet->fields['artist_jmusicreviews']; ?></div>
-			<div class="info_left1"><?php echo "&raquo; Album "; ?></div>
-			<div class="info_right1"><?php echo ": ". $recordSet->fields['album_jmusicreviews']; ?></div>
-			<div class="info_left1"><?php echo "&raquo; OST of "; ?></div>
-			<div class="info_right1"><?php echo ": ". $recordSet->fields['ost_jmusicreviews']; ?></div>
-			<div class="fake"></div>
-		</div>
-		<div class="newsdesc">
-			<?php
-			echo"". $recordSet->fields['isi_jmusicreviews'];
-			echo"<br />";
-			?>
-		</div>
-		<div class="newsdate">
-			<?php
-			echo"Posted : ". $recordSet->fields['waktu_upload_jmusicreviews'];
-			echo"<br />";
-			?>
-		</div>
-	</div>
+?>
+    <div class="newsbox">
+        <?php if ($recordSet === false): ?>
+            <p>Data tidak ditemukan.</p>
+        <?php else: ?>
+            <div class="newstitle">
+                <div class="info_left1"><?php echo "&raquo; Song Title "; ?></div>
+                <div class="info_right1"><?php echo ": ". $recordSet['judul_jmusicreviews']; ?></div>
+                <div class="info_left1"><?php echo "&raquo; Artist "; ?></div>
+                <div class="info_right1"><?php echo ": ". $recordSet['artist_jmusicreviews']; ?></div>
+                <div class="info_left1"><?php echo "&raquo; Album "; ?></div>
+                <div class="info_right1"><?php echo ": ". $recordSet['album_jmusicreviews']; ?></div>
+                <div class="info_left1"><?php echo "&raquo; OST of "; ?></div>
+                <div class="info_right1"><?php echo ": ". $recordSet['ost_jmusicreviews']; ?></div>
+                <div class="fake"></div>
+            </div>
+            <div class="newsdesc">
+                <?php
+                    echo"". $recordSet['isi_jmusicreviews'];
+                    echo"<br />";
+                ?>
+            </div>
+            <div class="newsdate">
+                <?php
+                    echo"Posted : ". $recordSet['waktu_upload_jmusicreviews'];
+                    echo"<br />";
+                ?>
+            </div>
+        <?php endif ?>
+    </div>
   	<br />
   	<?php
 	echo "<a href='javascript:history.go(-1)'>Back</a><br /><br />";
